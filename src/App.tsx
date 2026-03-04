@@ -12,7 +12,7 @@ import Footer from './components/Footer';
 import ProductsPage from './pages/ProductsPage'; 
 import Gallery from './components/Gallery';
 import ContactPage from './pages/ContactPage';
-import QualityStandardsPage from './pages/QualityStandardsPage';
+import CertificationPage from './pages/CertificationPage';
 import Chatbot from './components/Chatbot';
 
 function App() {
@@ -57,8 +57,8 @@ function App() {
         return <Gallery />;
       case 'contact':
         return <ContactPage />;
-      case 'quality':
-        return <QualityStandardsPage />;
+      case 'certification':
+        return <CertificationPage />;
       default:
         return (
           <>

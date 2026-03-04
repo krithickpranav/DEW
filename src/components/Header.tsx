@@ -13,6 +13,7 @@ interface HeaderProps {
   setCurrentPage: (page: string) => void;
 }
 
+
 const Header: React.FC<HeaderProps> = ({ isMenuOpen, setIsMenuOpen, currentPage, setCurrentPage }) => {
   // --- 3. State and Hooks ---
   const { t } = useLanguage();
@@ -45,7 +46,7 @@ const Header: React.FC<HeaderProps> = ({ isMenuOpen, setIsMenuOpen, currentPage,
           <div className="flex items-center space-x-6">
             <div className="flex items-center space-x-2">
               <Phone size={14} />
-              <span>+91 7418698082</span>
+              <span>+91 9442262444</span>
             </div>
             <div className="flex items-center space-x-2">
               <Mail size={14} />
@@ -53,7 +54,7 @@ const Header: React.FC<HeaderProps> = ({ isMenuOpen, setIsMenuOpen, currentPage,
             </div>
           </div>
           <div className="text-slate-300">
-            Mon - Sat: 9:00 AM - 6:00 PM
+            Mon - Sat: 9:00 AM - 6:30 PM
           </div>
         </div>
       </div>
@@ -96,10 +97,10 @@ const Header: React.FC<HeaderProps> = ({ isMenuOpen, setIsMenuOpen, currentPage,
                 {t('nav.gallery')}
               </button>
               <button 
-                onClick={() => navigateToPage('quality')} 
-                className={`transition-colors text-sm xl:text-base ${currentPage === 'quality' ? 'text-blue-600 font-semibold' : 'text-slate-700 hover:text-blue-600'}`}
+                onClick={() => navigateToPage('certification')} 
+                className={`transition-colors text-sm xl:text-base ${currentPage === 'certification' ? 'text-blue-600 font-semibold' : 'text-slate-700 hover:text-blue-600'}`}
               >
-                {t('nav.quality')}
+                Certification
               </button>
               <button 
                 onClick={() => navigateToPage('contact')} 
@@ -156,10 +157,10 @@ const Header: React.FC<HeaderProps> = ({ isMenuOpen, setIsMenuOpen, currentPage,
                   {t('nav.gallery')}
                 </button>
                 <button 
-                  onClick={() => navigateToPage('quality')} 
-                  className={`transition-colors text-left py-2 px-2 rounded ${currentPage === 'quality' ? 'text-blue-600 font-semibold bg-blue-50' : 'text-slate-700 hover:text-blue-600 hover:bg-slate-50'}`}
+                  onClick={() => navigateToPage('certification')} 
+                  className={`transition-colors text-left py-2 px-2 rounded ${currentPage === 'certification' ? 'text-blue-600 font-semibold bg-blue-50' : 'text-slate-700 hover:text-blue-600 hover:bg-slate-50'}`}
                 >
-                  {t('nav.quality')}
+                  Certification
                 </button>
                 <button 
                   onClick={() => navigateToPage('contact')} 
