@@ -91,7 +91,7 @@ function App() {
       {/* Floating Action Buttons - Right Side */}
       <div 
         ref={fabRef}
-        className={`fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40 flex flex-col space-y-3 transition-all duration-1000 ${
+        className={`fixed bottom-3 right-3 sm:bottom-6 sm:right-6 z-40 flex flex-col space-y-3 transition-all duration-1000 ${
           isFabVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'
         }`}
       >
@@ -125,13 +125,13 @@ function App() {
 
       {/* Sticky Get Quote Button - Left Side */}
       <div 
-        className={`fixed bottom-4 left-4 sm:bottom-6 sm:left-6 z-40 transition-all duration-1000 ${
+        className={`fixed bottom-3 left-3 sm:bottom-6 sm:left-6 z-40 transition-all duration-1000 ${
           isFabVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'
         }`}
       >
         <button
           onClick={() => setCurrentPage('contact')}
-          className="group bg-gradient-to-r from-blue-600 to-cyan-500 text-white px-4 sm:px-6 py-3 sm:py-4 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 flex items-center space-x-2 font-semibold text-sm sm:text-base"
+          className="group bg-gradient-to-r from-blue-600 to-cyan-500 text-white px-3 sm:px-6 py-3 sm:py-4 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 flex items-center space-x-2 font-semibold text-xs sm:text-base"
         >
           <span className="hidden sm:inline">Get Free Quote</span>
           <span className="sm:hidden">Quote</span>

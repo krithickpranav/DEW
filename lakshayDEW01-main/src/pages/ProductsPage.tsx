@@ -1063,8 +1063,8 @@ const renderMainCategories = () => (
           />
           <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/50 to-transparent"></div>
 
-          <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12">
-            <h1 className="text-3xl md:text-5xl font-bold text-white mb-4">
+          <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-8 md:p-12">
+            <h1 className="mb-4 text-2xl font-bold text-white sm:text-3xl md:text-5xl">
               {specs.title}
             </h1>
             <p className="text-xl md:text-2xl text-white/90 font-light">
@@ -1301,8 +1301,8 @@ const renderMainCategories = () => (
           />
           <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/50 to-transparent"></div>
 
-          <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12">
-            <h1 className="text-3xl md:text-5xl font-bold text-white mb-4">
+          <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-8 md:p-12">
+            <h1 className="mb-4 text-2xl font-bold text-white sm:text-3xl md:text-5xl">
               {specs.title}
             </h1>
             <p className="text-xl md:text-2xl text-white/90 font-light">
@@ -1490,7 +1490,7 @@ const renderMainCategories = () => (
                   : 'Detailed Specifications'}
               </span>
             </div>
-            <h1 className="text-4xl md:text-6xl font-bold text-slate-900 mb-6 leading-tight">
+            <h1 className="mb-6 text-3xl font-bold leading-tight text-slate-900 sm:text-4xl md:text-6xl">
               {currentView === 'main'
                 ? 'Our Product Range'
                 : currentView === 'container-models'
