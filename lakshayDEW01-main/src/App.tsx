@@ -14,6 +14,7 @@ import Gallery from './components/Gallery';
 import ContactPage from './pages/ContactPage';
 import CertificationPage from './pages/CertificationPage';
 import Chatbot from './components/Chatbot';
+import ManufacturingProcess from './components/ManufacturingProcess';
 
 function App() {
   // --- 2. State Management ---
@@ -63,6 +64,7 @@ function App() {
         return (
           <>
             <Hero />
+            <ManufacturingProcess />
             <About />
             <Achievement />
             <WhyChooseUs />
