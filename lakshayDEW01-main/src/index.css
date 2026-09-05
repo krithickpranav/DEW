@@ -2,15 +2,61 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Base responsive styles */
+:root {
+  --brand-900: #0f172a;
+  --brand-800: #172554;
+  --brand-700: #1d4ed8;
+  --brand-600: #2563eb;
+  --brand-500: #3b82f6;
+  --brand-400: #60a5fa;
+  --accent-500: #22c55e;
+  --neutral-50: #f8fafc;
+  --neutral-100: #f1f5f9;
+  --neutral-200: #e2e8f0;
+  --neutral-300: #cbd5e1;
+  --neutral-600: #475569;
+  --neutral-700: #334155;
+  --neutral-900: #0f172a;
+}
+
 * {
   box-sizing: border-box;
 }
 
-/* Smooth scrolling for the entire page */
 html {
   scroll-behavior: smooth;
   font-size: 16px;
+  background: var(--neutral-50);
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background: linear-gradient(180deg, #f8fafc 0%, #eef2ff 100%);
+  color: var(--neutral-900);
+  font-family: Inter, "Segoe UI", sans-serif;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button, a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #e2e8f0;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #60a5fa, #1d4ed8);
+  border-radius: 9999px;
 }
 
 /* Responsive font scaling */

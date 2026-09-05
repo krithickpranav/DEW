@@ -16,24 +16,23 @@ const About: React.FC = () => {
     <section 
       ref={aboutRef}
       id="about" 
-      className="py-16 bg-slate-50"
+      className="py-20 bg-transparent"
     >
       <div className="container mx-auto px-4">
         <div className="max-w-7xl mx-auto">
-          {/* Section Header */}
-          <div className={`text-center mb-12 transition-all duration-1000 ${
+          <div className={`mb-12 text-center transition-all duration-1000 ${
             isAboutVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}>
-            <span className="text-blue-600 font-semibold text-lg mb-2 block">{t('about.label')}</span>
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
+            <span className="mb-3 block text-lg font-bold tracking-[0.12em] text-blue-700 uppercase">{t('about.label')}</span>
+            <h2 className="mb-4 text-3xl font-black text-slate-900 md:text-5xl">
               {t('about.title')}
             </h2>
-            <p className="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+            <p className="mx-auto max-w-3xl text-lg leading-relaxed text-slate-600 md:text-xl">
               {t('about.description')}
             </p>
           </div>
 
-          <div className={`grid lg:grid-cols-2 gap-8 lg:gap-12 items-center mb-12 transition-all duration-1000 delay-300 ${
+          <div className={`mb-12 grid items-center gap-8 lg:grid-cols-2 lg:gap-12 transition-all duration-1000 delay-300 ${
             isAboutVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'
           }`}>
             {/* Content */}
@@ -78,24 +77,23 @@ const About: React.FC = () => {
             <div className={`relative transition-all duration-1000 delay-500 ${
               isAboutVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'
             }`}>
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl bg-slate-100">
+              <div className="relative overflow-hidden rounded-[28px] border border-slate-200 bg-slate-100 shadow-[0_30px_80px_rgba(15,23,42,0.08)]">
                 <img
                   src={ourStoryImage}
                   alt="Deepam Engineering Workshop"
-                  className="w-full h-[350px] md:h-[500px] object-contain object-center"
+                  className="h-[350px] w-full object-cover object-center md:h-[500px]"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/20 to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/20 to-transparent" />
               </div>
               
-              {/* Floating Badge */}
-              <div className="absolute -bottom-4 -left-4 sm:-bottom-6 sm:-left-6 bg-white p-3 sm:p-6 rounded-xl shadow-xl border border-slate-100">
+              <div className="absolute -bottom-5 -left-3 rounded-2xl border border-slate-100 bg-white p-3 shadow-[0_25px_50px_rgba(15,23,42,0.12)] sm:-bottom-6 sm:-left-6 sm:p-5">
                 <div className="flex items-center space-x-3 sm:space-x-4">
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-blue-600 rounded-lg flex items-center justify-center">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-blue-600 to-indigo-600 sm:h-12 sm:w-12">
                     <Award className="text-white" size={24} />
                   </div>
                   <div>
-                    <div className="text-lg sm:text-2xl font-bold text-slate-900">{t('about.yearsCount')}</div>
-                    <div className="text-slate-600 text-xs md:text-sm">{t('about.yearsBadge')}</div>
+                    <div className="text-lg font-black text-slate-900 sm:text-2xl">{t('about.yearsCount')}</div>
+                    <div className="text-xs text-slate-600 md:text-sm">{t('about.yearsBadge')}</div>
                   </div>
                 </div>
               </div>
@@ -104,7 +102,7 @@ const About: React.FC = () => {
 
           {/* Key Features - Enhanced with Glassmorphism */}
           <div ref={featuresRef} className="grid md:grid-cols-3 gap-6">
-            <div className={`relative text-center p-6 md:p-8 bg-white/80 backdrop-blur-sm rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 group border border-slate-100 hover:border-blue-200 hover:-translate-y-2 ${
+            <div className={`group relative rounded-2xl border border-slate-200 bg-white/80 p-6 text-center shadow-[0_18px_45px_rgba(15,23,42,0.05)] backdrop-blur-sm transition-all duration-500 hover:-translate-y-2 hover:border-blue-200 hover:shadow-[0_30px_60px_rgba(37,99,235,0.12)] md:p-8 ${
               visibleFeatures[0] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
             }`}>
               <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-transparent opacity-0 group-hover:opacity-100 rounded-xl transition-opacity duration-500"></div>
@@ -119,7 +117,7 @@ const About: React.FC = () => {
               </div>
             </div>
 
-            <div className={`relative text-center p-6 md:p-8 bg-white/80 backdrop-blur-sm rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 group border border-slate-100 hover:border-green-200 hover:-translate-y-2 ${
+            <div className={`group relative rounded-2xl border border-slate-200 bg-white/80 p-6 text-center shadow-[0_18px_45px_rgba(15,23,42,0.05)] backdrop-blur-sm transition-all duration-500 hover:-translate-y-2 hover:border-emerald-200 hover:shadow-[0_30px_60px_rgba(34,197,94,0.12)] md:p-8 ${
               visibleFeatures[1] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
             }`}>
               <div className="absolute inset-0 bg-gradient-to-br from-green-50 to-transparent opacity-0 group-hover:opacity-100 rounded-xl transition-opacity duration-500"></div>
@@ -134,7 +132,7 @@ const About: React.FC = () => {
               </div>
             </div>
 
-            <div className={`relative text-center p-6 md:p-8 bg-white/80 backdrop-blur-sm rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 group border border-slate-100 hover:border-purple-200 hover:-translate-y-2 ${
+            <div className={`group relative rounded-2xl border border-slate-200 bg-white/80 p-6 text-center shadow-[0_18px_45px_rgba(15,23,42,0.05)] backdrop-blur-sm transition-all duration-500 hover:-translate-y-2 hover:border-violet-200 hover:shadow-[0_30px_60px_rgba(139,92,246,0.12)] md:p-8 ${
               visibleFeatures[2] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
             }`}>
               <div className="absolute inset-0 bg-gradient-to-br from-purple-50 to-transparent opacity-0 group-hover:opacity-100 rounded-xl transition-opacity duration-500"></div>

@@ -51,115 +51,104 @@ const Hero: React.FC<HeroProps> = () => {
     <section 
       ref={heroRef}
       id="home" 
-      className="relative h-[90vh] sm:h-screen flex items-center justify-center overflow-hidden pt-20 sm:pt-24 md:pt-28"
+      className="relative flex h-[92vh] items-center justify-center overflow-hidden pt-20 sm:h-screen sm:pt-24 md:pt-28"
     >
-      {/* Background Image with Overlay */}
       <div 
-        className="absolute inset-0 bg-cover bg-bottom bg-no-repeat filter contrast-125 brightness-110"
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
           backgroundImage: `url(${heroImage})`
         }}
       >
-        <div className="absolute inset-0 bg-slate-900/80"></div>
+        <div className="absolute inset-0 bg-slate-950/70" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(59,130,246,0.35),_transparent_38%),linear-gradient(135deg,rgba(15,23,42,0.9),rgba(15,23,42,0.75))]" />
       </div>
 
-      {/* Content */}
       <div className={`relative z-10 container mx-auto px-4 py-16 transition-all duration-1000 ${
         isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
       }`}>
-        <div className="max-w-5xl mx-auto text-center text-white">
-          {/* Badge */}
-          <div className={`inline-flex items-center bg-blue-600/20 backdrop-blur-sm border border-blue-400/30 rounded-full px-4 sm:px-6 py-2 mb-6 sm:mb-8 transition-all duration-1000 delay-200 ${
+        <div className="mx-auto max-w-5xl text-center text-white">
+          <div className={`mb-6 inline-flex items-center rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-medium text-blue-100 shadow-lg shadow-blue-950/20 backdrop-blur-md sm:px-6 sm:text-sm ${
             isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
           }`}>
-            <span className="w-2 h-2 bg-blue-400 rounded-full mr-3 animate-pulse"></span>
-            <span className="text-blue-200 text-xs sm:text-sm font-medium">{t('hero.badge')}</span>
+            <span className="mr-3 h-2.5 w-2.5 rounded-full bg-emerald-400 shadow-[0_0_12px_rgba(52,211,153,0.9)]" />
+            <span>{t('hero.badge')}</span>
           </div>
 
-          {/* Main Headline */}
-          <h1 className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 sm:mb-6 leading-tight transition-all duration-1000 delay-400 ${
+          <h1 className={`mb-4 text-3xl font-black leading-tight tracking-tight text-white sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl ${
             isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}>
-            <span className="block text-white">{t('hero.title')}</span>
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300 mt-1 sm:mt-2">
+            <span className="block">{t('hero.title')}</span>
+            <span className="mt-2 block bg-gradient-to-r from-blue-300 via-cyan-300 to-white bg-clip-text text-transparent">
               {t('hero.subtitle')}
             </span>
           </h1>
 
-          {/* Subtitle */}
-          <p className={`text-base sm:text-lg md:text-xl text-slate-300 mb-3 sm:mb-4 max-w-3xl mx-auto leading-relaxed transition-all duration-1000 delay-600 ${
+          <p className={`mx-auto max-w-3xl text-base text-slate-200 sm:text-lg md:text-xl ${
             isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
           }`}>
             {t('hero.description')}
           </p>
           
-          <p className={`text-sm sm:text-base md:text-lg text-slate-400 mb-6 sm:mb-8 md:mb-12 max-w-2xl mx-auto transition-all duration-1000 delay-700 ${
+          <p className={`mx-auto mt-4 max-w-2xl text-sm text-slate-300 sm:text-base md:text-lg ${
             isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
           }`}>
             {t('hero.details')}
           </p>
 
-          {/* Action Buttons */}
-          <div className={`flex flex-col sm:flex-row items-center justify-center space-y-3 sm:space-y-0 sm:space-x-4 lg:space-x-6 mb-8 sm:mb-12 transition-all duration-1000 delay-800 ${
+          <div className={`mt-8 flex flex-col items-center justify-center gap-3 sm:mt-10 sm:flex-row sm:gap-4 ${
             isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}>
             <button
               onClick={() => window.dispatchEvent(new CustomEvent('navigate', { detail: 'contact' }))}
-              className="group relative bg-gradient-to-r from-blue-600 to-cyan-500 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold transition-all duration-300 flex items-center space-x-2 shadow-xl hover:shadow-2xl hover:scale-105 w-full sm:w-auto justify-center text-sm sm:text-base overflow-hidden"
+              className="group relative w-full overflow-hidden rounded-xl bg-gradient-to-r from-blue-600 to-cyan-500 px-6 py-3.5 text-sm font-semibold text-white shadow-xl shadow-blue-500/30 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl sm:w-auto sm:px-8 sm:text-base"
             >
-              <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <FileText size={20} className="relative z-10" />
-              <span className="relative z-10">{t('hero.getQuote')}</span>
-              <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform relative z-10" />
+              <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-blue-600 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+              <span className="relative z-10 flex items-center justify-center gap-2">
+                <FileText size={18} />
+                {t('hero.getQuote')}
+                <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
+              </span>
             </button>
             
             <button
               onClick={() => window.dispatchEvent(new CustomEvent('navigate', { detail: 'products' }))}
-              className="group bg-white/10 backdrop-blur-md border-2 border-white/30 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold hover:bg-white/20 hover:border-white/50 transition-all duration-300 flex items-center space-x-2 shadow-xl hover:shadow-2xl hover:scale-105 w-full sm:w-auto justify-center text-sm sm:text-base"
+              className="group w-full rounded-xl border border-white/20 bg-white/5 px-6 py-3.5 text-sm font-semibold text-white shadow-lg backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-white/40 hover:bg-white/10 sm:w-auto sm:px-8 sm:text-base"
             >
-              <span>{t('hero.viewProducts')}</span>
-              <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+              <span className="flex items-center justify-center gap-2">
+                {t('hero.viewProducts')}
+                <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
+              </span>
             </button>
           </div>
 
-          {/* Stats - Animated Counters with Glassmorphism */}
-          <div className={`grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 md:gap-8 max-w-4xl mx-auto transition-all duration-1000 delay-1000 ${
+          <div className={`mx-auto mt-10 grid max-w-4xl grid-cols-2 gap-4 sm:mt-12 sm:grid-cols-4 sm:gap-6 ${
             isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}>
-            <div className="group text-center bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-4 hover:bg-white/10 hover:border-white/20 transition-all duration-300 hover:scale-105">
-              <div className="text-xl sm:text-2xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300 mb-1 sm:mb-2">
-                {containersCount}+
-              </div>
-              <div className="text-slate-300 text-xs md:text-sm">{t('hero.stat1')}</div>
+            <div className="rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur-md shadow-lg shadow-slate-900/20 transition-all duration-300 hover:scale-[1.02] hover:bg-white/10">
+              <div className="mb-1 text-2xl font-black text-blue-300 sm:text-3xl">{containersCount}+</div>
+              <div className="text-xs text-slate-300 md:text-sm">{t('hero.stat1')}</div>
             </div>
-            <div className="group text-center bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-4 hover:bg-white/10 hover:border-white/20 transition-all duration-300 hover:scale-105">
-              <div className="text-xl sm:text-2xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300 mb-1 sm:mb-2">
-                {yearsCount}+
-              </div>
-              <div className="text-slate-300 text-xs md:text-sm">{t('hero.stat2')}</div>
+            <div className="rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur-md shadow-lg shadow-slate-900/20 transition-all duration-300 hover:scale-[1.02] hover:bg-white/10">
+              <div className="mb-1 text-2xl font-black text-blue-300 sm:text-3xl">{yearsCount}+</div>
+              <div className="text-xs text-slate-300 md:text-sm">{t('hero.stat2')}</div>
             </div>
-            <div className="group text-center bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-4 hover:bg-white/10 hover:border-white/20 transition-all duration-300 hover:scale-105">
-              <div className="text-xl sm:text-2xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300 mb-1 sm:mb-2">
-                {clientsCount}+
-              </div>
-              <div className="text-slate-300 text-xs md:text-sm">{t('hero.stat3')}</div>
+            <div className="rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur-md shadow-lg shadow-slate-900/20 transition-all duration-300 hover:scale-[1.02] hover:bg-white/10">
+              <div className="mb-1 text-2xl font-black text-blue-300 sm:text-3xl">{clientsCount}+</div>
+              <div className="text-xs text-slate-300 md:text-sm">{t('hero.stat3')}</div>
             </div>
-            <div className="group text-center bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-4 hover:bg-white/10 hover:border-white/20 transition-all duration-300 hover:scale-105">
-              <div className="text-xl sm:text-2xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300 mb-1 sm:mb-2">
-                {supportCount}/7
-              </div>
-              <div className="text-slate-300 text-xs md:text-sm">{t('hero.stat4')}</div>
+            <div className="rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur-md shadow-lg shadow-slate-900/20 transition-all duration-300 hover:scale-[1.02] hover:bg-white/10">
+              <div className="mb-1 text-2xl font-black text-blue-300 sm:text-3xl">{supportCount}/7</div>
+              <div className="text-xs text-slate-300 md:text-sm">{t('hero.stat4')}</div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Animated Scroll Indicator */}
-      <div className={`absolute bottom-4 sm:bottom-8 left-1/2 transform -translate-x-1/2 text-white animate-bounce transition-all duration-1000 delay-1200 ${
+      <div className={`absolute bottom-4 left-1/2 -translate-x-1/2 text-white transition-all duration-1000 delay-1200 sm:bottom-8 ${
         isHeroVisible ? 'opacity-100' : 'opacity-0'
       }`}>
-        <div className="w-5 h-8 sm:w-6 sm:h-10 border-2 border-white/30 rounded-full flex justify-center">
-          <div className="w-1 h-3 bg-white rounded-full mt-2 animate-pulse"></div>
+        <div className="flex h-8 w-5 justify-center rounded-full border-2 border-white/30 sm:h-10 sm:w-6">
+          <div className="mt-2 h-3 w-1 rounded-full bg-white animate-pulse" />
         </div>
       </div>
     </section>

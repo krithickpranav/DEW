@@ -1,8 +1,8 @@
 // --- 1. Imports ---
 import React, { useState } from 'react';
-import emailjs from '@emailjs/browser';
 import toast from 'react-hot-toast';
 import { MapPin, Phone, Mail, Clock, Send, MessageCircle } from 'lucide-react';
+import { isEmailJsConfigured, sendContactForm } from '../services/emailService';
 
 const Contact: React.FC = () => {
   // --- 2. State Management ---
@@ -29,18 +29,14 @@ const Contact: React.FC = () => {
 
     setIsSubmitting(true);
 
-    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
-    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
-
-    if (!serviceId || !templateId || !publicKey) {
+    if (!isEmailJsConfigured()) {
       toast.error('EmailJS credentials missing. Check your .env file.');
       setIsSubmitting(false);
       return;
     }
 
     try {
-      await emailjs.send(serviceId, templateId, formData, publicKey);
+      await sendContactForm(formData);
       toast.success('✅ Message sent successfully!');
       setFormData({
         name: '',

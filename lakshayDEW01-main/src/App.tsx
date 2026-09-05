@@ -12,7 +12,7 @@ import Footer from './components/Footer';
 import ProductsPage from './pages/ProductsPage'; 
 import Gallery from './components/Gallery';
 import ContactPage from './pages/ContactPage';
-import QualityStandardsPage from './pages/QualityStandardsPage';
+import CertificationPage from './pages/CertificationPage';
 import Chatbot from './components/Chatbot';
 
 function App() {
@@ -57,8 +57,8 @@ function App() {
         return <Gallery />;
       case 'contact':
         return <ContactPage />;
-      case 'quality':
-        return <QualityStandardsPage />;
+      case 'certification':
+        return <CertificationPage />;
       default:
         return (
           <>
@@ -74,7 +74,7 @@ function App() {
 
   // --- 6. JSX Rendering ---
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-[radial-gradient(circle_at_top,_#f8fafc_0%,_#eef2ff_32%,_#f8fafc_100%)] text-slate-800">
       <Header 
         isMenuOpen={isMenuOpen} 
         setIsMenuOpen={setIsMenuOpen}
@@ -82,7 +82,7 @@ function App() {
         setCurrentPage={setCurrentPage}
       />
       
-      <main>
+      <main className="overflow-hidden">
         {renderPage()}
       </main>
 

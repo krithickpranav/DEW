@@ -4,6 +4,17 @@ import { Menu, X, Phone, Mail, GitCompare } from 'lucide-react';
 import LanguageSelector from './LanguageSelector';
 import ComparisonTool from './ComparisonTool';
 import { useLanguage } from '../contexts/LanguageContext';
+import companyLogo from '../../gallery/logo/ChatGPT Image Mar 5, 2026, 01_53_39 PM.png';
+
+const CompanyLogo: React.FC = () => (
+  <div className="relative flex h-10 w-10 items-center justify-center overflow-hidden rounded-full bg-white shadow-[0_0_0_3px_rgba(143,227,85,0.22),0_18px_30px_rgba(16,185,129,0.22)] sm:h-12 sm:w-12">
+    <img
+      src={companyLogo}
+      alt="Deepam Engineering Works logo"
+      className="h-full w-full rounded-full object-cover"
+    />
+  </div>
+);
 
 // --- 2. Component Props Interface ---
 interface HeaderProps {
@@ -12,6 +23,7 @@ interface HeaderProps {
   currentPage: string;
   setCurrentPage: (page: string) => void;
 }
+
 
 const Header: React.FC<HeaderProps> = ({ isMenuOpen, setIsMenuOpen, currentPage, setCurrentPage }) => {
   // --- 3. State and Hooks ---
@@ -40,84 +52,80 @@ const Header: React.FC<HeaderProps> = ({ isMenuOpen, setIsMenuOpen, currentPage,
   return (
     <>
       {/* Top Contact Bar */}
-      <div className="bg-slate-800 text-white py-2 px-4 hidden md:block">
-        <div className="container mx-auto flex justify-between items-center text-sm">
+      <div className="hidden md:block border-b border-slate-200 bg-slate-950 text-white/90">
+        <div className="container mx-auto flex justify-between items-center px-4 py-2 text-xs lg:text-sm">
           <div className="flex items-center space-x-6">
             <div className="flex items-center space-x-2">
-              <Phone size={14} />
-              <span>+91 7418698082</span>
+              <Phone size={14} className="text-blue-300" />
+              <span>+91 9442262444</span>
             </div>
             <div className="flex items-center space-x-2">
-              <Mail size={14} />
+              <Mail size={14} className="text-blue-300" />
               <span>deepamengineeringworks.contact@gmail.com</span>
             </div>
           </div>
           <div className="text-slate-300">
-            Mon - Sat: 9:00 AM - 6:00 PM
+            Mon - Sat: 9:00 AM - 6:30 PM
           </div>
         </div>
       </div>
 
       {/* Main Navigation */}
       <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-white shadow-lg md:top-0' : 'bg-white/95 backdrop-blur-sm md:top-10'
+        isScrolled ? 'bg-white/90 shadow-[0_12px_30px_rgba(15,23,42,0.08)] backdrop-blur-xl md:top-0' : 'bg-white/85 backdrop-blur-xl md:top-9'
       }`}>
         <nav className="container mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-4">
           <div className="flex items-center justify-between">
             {/* Logo */}
             <div className="flex items-center space-x-2 sm:space-x-3">
-              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-blue-600 rounded-lg flex items-center justify-center flex-shrink-0">
-                <span className="text-white font-bold text-lg sm:text-xl">D</span>
-              </div>
+              <CompanyLogo />
               <div className="min-w-0">
-                <h1 className="text-sm sm:text-lg lg:text-xl font-bold text-slate-800 truncate">Deepam Engineering Works</h1>
-                <p className="text-xs text-slate-600 hidden sm:block">Container Solutions</p>
+                <h1 className="truncate text-sm font-extrabold tracking-tight text-slate-900 sm:text-lg lg:text-xl">Deepam Engineering Works</h1>
+                <p className="hidden text-xs font-medium text-slate-600 sm:block">Container Solutions</p>
               </div>
             </div>
 
             {/* Desktop Navigation */}
-            <div className="hidden lg:flex items-center space-x-6 xl:space-x-8">
+            <div className="hidden items-center space-x-6 lg:flex xl:space-x-8">
               <button 
                 onClick={() => navigateToPage('home')} 
-                className={`transition-colors text-sm xl:text-base ${currentPage === 'home' ? 'text-blue-600 font-semibold' : 'text-slate-700 hover:text-blue-600'}`}
+                className={`text-sm font-medium transition-all xl:text-base ${currentPage === 'home' ? 'text-blue-700' : 'text-slate-700 hover:text-blue-700'}`}
               >
                 {t('nav.home')}
               </button>
               <button 
                 onClick={() => navigateToPage('products')} 
-                className={`transition-colors text-sm xl:text-base ${currentPage === 'products' ? 'text-blue-600 font-semibold' : 'text-slate-700 hover:text-blue-600'}`}
+                className={`text-sm font-medium transition-all xl:text-base ${currentPage === 'products' ? 'text-blue-700' : 'text-slate-700 hover:text-blue-700'}`}
               >
                 {t('nav.products')}
               </button>
               <button 
                 onClick={() => navigateToPage('gallery')} 
-                className={`transition-colors text-sm xl:text-base ${currentPage === 'gallery' ? 'text-blue-600 font-semibold' : 'text-slate-700 hover:text-blue-600'}`}
+                className={`text-sm font-medium transition-all xl:text-base ${currentPage === 'gallery' ? 'text-blue-700' : 'text-slate-700 hover:text-blue-700'}`}
               >
                 {t('nav.gallery')}
               </button>
               <button 
-                onClick={() => navigateToPage('quality')} 
-                className={`transition-colors text-sm xl:text-base ${currentPage === 'quality' ? 'text-blue-600 font-semibold' : 'text-slate-700 hover:text-blue-600'}`}
+                onClick={() => navigateToPage('certification')} 
+                className={`text-sm font-medium transition-all xl:text-base ${currentPage === 'certification' ? 'text-blue-700' : 'text-slate-700 hover:text-blue-700'}`}
               >
-                {t('nav.quality')}
+                Certification
               </button>
               <button 
                 onClick={() => navigateToPage('contact')} 
-                className={`transition-colors text-sm xl:text-base ${currentPage === 'contact' ? 'text-blue-600 font-semibold' : 'text-slate-700 hover:text-blue-600'}`}
+                className={`text-sm font-medium transition-all xl:text-base ${currentPage === 'contact' ? 'text-blue-700' : 'text-slate-700 hover:text-blue-700'}`}
               >
                 {t('nav.contact')}
               </button>
               
-              {/* Compare Button */}
               <button
                 onClick={() => setShowComparison(true)}
-                className="flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-blue-600 to-cyan-500 text-white rounded-lg hover:from-blue-700 hover:to-cyan-600 transition-all duration-300 shadow-md hover:shadow-lg text-sm xl:text-base"
+                className="flex items-center space-x-2 rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white shadow-lg shadow-slate-900/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-blue-700"
               >
                 <GitCompare size={18} />
                 <span className="hidden xl:inline">Compare</span>
               </button>
               
-              {/* Language Selector */}
               <LanguageSelector />
             </div>
             
@@ -156,10 +164,10 @@ const Header: React.FC<HeaderProps> = ({ isMenuOpen, setIsMenuOpen, currentPage,
                   {t('nav.gallery')}
                 </button>
                 <button 
-                  onClick={() => navigateToPage('quality')} 
-                  className={`transition-colors text-left py-2 px-2 rounded ${currentPage === 'quality' ? 'text-blue-600 font-semibold bg-blue-50' : 'text-slate-700 hover:text-blue-600 hover:bg-slate-50'}`}
+                  onClick={() => navigateToPage('certification')} 
+                  className={`transition-colors text-left py-2 px-2 rounded ${currentPage === 'certification' ? 'text-blue-600 font-semibold bg-blue-50' : 'text-slate-700 hover:text-blue-600 hover:bg-slate-50'}`}
                 >
-                  {t('nav.quality')}
+                  Certification
                 </button>
                 <button 
                   onClick={() => navigateToPage('contact')} 

@@ -1,20 +1,23 @@
 // --- 1. Imports ---
 import React from 'react';
 import { Phone, Mail, MapPin, Facebook, Twitter, Linkedin, Instagram } from 'lucide-react';
+import companyLogo from '../../gallery/logo/ChatGPT Image Mar 5, 2026, 01_53_39 PM.png';
 
 const Footer: React.FC = () => {
   // --- 2. JSX Rendering ---
   return (
-    <footer className="bg-slate-900 text-white">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 md:py-16">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+    <footer className="mt-12 border-t border-slate-200 bg-slate-950 text-white">
+      <div className="container mx-auto px-4 py-8 sm:px-6 sm:py-12 lg:px-8 lg:py-16">
+        <div className="mx-auto max-w-7xl">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 sm:gap-8">
             {/* Company Info */}
             <div className="sm:col-span-2 lg:col-span-1">
-              <div className="flex items-center space-x-3 mb-6">
-                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-blue-600 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <span className="text-white font-bold text-lg sm:text-xl">D</span>
-                </div>
+              <div className="mb-6 flex items-center space-x-3">
+                <img
+                  src={companyLogo}
+                  alt="Deepam Engineering Works logo"
+                  className="h-10 w-10 rounded-full object-cover bg-white shadow-[0_0_0_3px_rgba(143,227,85,0.22),0_18px_30px_rgba(16,185,129,0.22)] sm:h-12 sm:w-12"
+                />
                 <div>
                   <h3 className="text-base sm:text-xl font-bold">Deepam Engineering Works</h3>
                   <p className="text-xs sm:text-sm text-slate-400">Container Solutions</p>
