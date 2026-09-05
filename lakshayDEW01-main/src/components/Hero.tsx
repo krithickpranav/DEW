@@ -54,13 +54,22 @@ const Hero: React.FC<HeroProps> = () => {
       className="relative flex h-[92vh] items-center justify-center overflow-hidden pt-20 sm:h-screen sm:pt-24 md:pt-28"
     >
       <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat hero-yard-image"
         style={{
           backgroundImage: `url(${heroImage})`
         }}
       >
         <div className="absolute inset-0 bg-slate-950/70" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(59,130,246,0.35),_transparent_38%),linear-gradient(135deg,rgba(15,23,42,0.9),rgba(15,23,42,0.75))]" />
+        <div className="hero-yard-grid" aria-hidden="true" />
+        <div className="hero-yard-scan" aria-hidden="true" />
+      </div>
+
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-32 bg-gradient-to-t from-slate-950/70 to-transparent" aria-hidden="true">
+        <div className="container mx-auto flex h-full items-end justify-between px-6 pb-8 opacity-60 sm:px-10">
+          <span className="industrial-mark">DEW // 01</span>
+          <span className="industrial-mark hidden sm:block">CONTAINER FABRICATION</span>
+        </div>
       </div>
 
       <div className={`relative z-10 container mx-auto px-4 py-16 transition-all duration-1000 ${

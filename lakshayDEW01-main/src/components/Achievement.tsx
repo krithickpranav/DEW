@@ -86,7 +86,7 @@ const Achievement: React.FC = () => {
                             <img
                               src={img}
                               alt={`${cat.title} ${idx + 1}`}
-                              className="w-full h-full object-cover"
+                              className="industrial-image h-full w-full object-cover"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
                           </div>
@@ -98,7 +98,7 @@ const Achievement: React.FC = () => {
                       <img
                         src={cat.image}
                         alt={cat.title}
-                        className="w-full h-full object-contain"
+                        className="industrial-image h-full w-full object-contain"
                       />
                     </div>
                   )}
