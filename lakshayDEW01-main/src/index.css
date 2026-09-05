@@ -154,6 +154,28 @@ p {
   mask-image: linear-gradient(to bottom, transparent, black 18%, black 82%, transparent);
 }
 
+.container-brand-mark {
+  position: absolute;
+  left: 11%;
+  top: 27%;
+  width: 78%;
+  height: auto;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  opacity: 0.88;
+  transform: perspective(900px) rotateY(-5deg) rotateX(1deg);
+  transform-origin: center;
+  filter: contrast(1.05) drop-shadow(1px 2px 1px rgba(15, 23, 42, 0.65));
+}
+
+@media (max-width: 640px) {
+  .container-brand-mark {
+    left: 7%;
+    top: 29%;
+    width: 86%;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .steel-intro {
     display: none;

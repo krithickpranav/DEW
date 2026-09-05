@@ -33,6 +33,39 @@ const stages = [
   },
 ];
 
+const BrandedContainerMark: React.FC = () => (
+  <svg
+    className="container-brand-mark"
+    viewBox="0 0 800 260"
+    role="img"
+    aria-label="Deepam Engineering Works. Engineered to carry. Built to last."
+  >
+    <defs>
+      <filter id="paint-wear" x="-10%" y="-20%" width="120%" height="140%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2" seed="11" result="noise" />
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.8" />
+      </filter>
+      <linearGradient id="paint-light" x1="0" x2="0" y1="0" y2="1">
+        <stop offset="0" stopColor="#f8fafc" stopOpacity="0.92" />
+        <stop offset="0.48" stopColor="#cbd5e1" stopOpacity="0.78" />
+        <stop offset="1" stopColor="#64748b" stopOpacity="0.85" />
+      </linearGradient>
+    </defs>
+    <g transform="skewX(-7)" filter="url(#paint-wear)">
+      <text x="400" y="128" textAnchor="middle" fill="#0f172a" opacity="0.34" fontFamily="Arial Narrow, Arial, sans-serif" fontSize="54" fontWeight="900" letterSpacing="3">
+        DEEPAM ENGINEERING WORKS
+      </text>
+      <text x="397" y="124" textAnchor="middle" fill="url(#paint-light)" fontFamily="Arial Narrow, Arial, sans-serif" fontSize="54" fontWeight="900" letterSpacing="3">
+        DEEPAM ENGINEERING WORKS
+      </text>
+      <text x="400" y="174" textAnchor="middle" fill="#e2e8f0" opacity="0.72" fontFamily="Arial, sans-serif" fontSize="19" fontWeight="700" letterSpacing="4">
+        ENGINEERED TO CARRY. BUILT TO LAST.
+      </text>
+      <path d="M180 196 H620" stroke="#e2e8f0" strokeOpacity="0.5" strokeWidth="2" />
+    </g>
+  </svg>
+);
+
 const ManufacturingProcess: React.FC = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
@@ -98,6 +131,7 @@ const ManufacturingProcess: React.FC = () => {
                 <article key={stage.number} className="process-card group relative">
                   <div className="relative mb-6 aspect-[4/3] overflow-hidden rounded-2xl border border-white/10 bg-slate-900 shadow-2xl">
                     <img src={stage.image} alt="" loading="lazy" className="h-full w-full object-cover opacity-75 transition duration-700 group-hover:scale-105 group-hover:opacity-100" />
+                    {stage.number === '02' && <BrandedContainerMark />}
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/10 to-transparent" />
                     <span className="absolute bottom-4 left-4 font-mono text-xs tracking-[0.3em] text-cyan-200">STAGE {stage.number}</span>
                   </div>
