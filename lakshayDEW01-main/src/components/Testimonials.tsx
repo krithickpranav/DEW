@@ -2,7 +2,7 @@
 import React from 'react';
 import { MapPinned, Navigation, Sparkles } from 'lucide-react';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
-import companyLogo from '../../gallery/logo/ChatGPT Image Mar 5, 2026, 01_53_39 PM.png';
+import companyLogo from '../assets/logo/ChatGPT Image Mar 5, 2026, 01_53_39 PM.webp';
 
 const Testimonials: React.FC = () => {
   const [testimonialsRef, isTestimonialsVisible] = useScrollAnimation();

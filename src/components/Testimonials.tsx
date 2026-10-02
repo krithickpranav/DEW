@@ -1,174 +1,134 @@
 // --- 1. Imports ---
 import React from 'react';
-import { Star, Quote } from 'lucide-react';
-import { useScrollAnimation, useStaggeredAnimation } from '../hooks/useScrollAnimation';
+import { MapPinned, Navigation, Sparkles } from 'lucide-react';
+import { useScrollAnimation } from '../hooks/useScrollAnimation';
+import companyLogo from '../assets/logo/ChatGPT Image Mar 5, 2026, 01_53_39 PM.webp';
 
 const Testimonials: React.FC = () => {
-  // --- 2. Hooks ---
   const [testimonialsRef, isTestimonialsVisible] = useScrollAnimation();
-  const [cardsRef, visibleCards] = useStaggeredAnimation(5, 150);
 
-  // --- 3. Data Definitions ---
-  const testimonials = [
-    {
-      id: 1,
-      name: 'Rajesh Kumar',
-      position: 'Fleet Manager',
-      company: 'TransLogistics Pvt Ltd',
-      image: 'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop',
-      content: 'Deepam Engineering has been our trusted partner for over 3 years. Their 32ft containers are incredibly durable and have significantly reduced our maintenance costs. The quality is outstanding!',
-      rating: 5,
-      project: '32ft Container Fleet'
-    },
-    {
-      id: 2,
-      name: 'Priya Sharma',
-      position: 'Operations Director',
-      company: 'ColdChain Solutions',
-      image: 'https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop',
-      content: 'The customized refrigerated containers delivered by Deepam Engineering exceeded our expectations. Perfect temperature control and robust construction make them ideal for our pharmaceutical logistics.',
-      rating: 5,
-      project: 'Custom Refrigerated Containers'
-    },
-    {
-      id: 3,
-      name: 'Mohammad Ali',
-      position: 'Supply Chain Head',
-      company: 'Global Exports Ltd',
-      image: 'https://images.pexels.com/photos/1040880/pexels-photo-1040880.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop',
-      content: 'Professional service and timely delivery. The 24ft containers are perfect for our regional distribution network. Deepam Engineering understands our business needs perfectly.',
-      rating: 5,
-      project: '24ft Container Series'
-    },
-    {
-      id: 4,
-      name: 'Vikram Singh',
-      position: 'Fleet Operations Manager',
-      company: 'Highway Transport Solutions',
-      image: 'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop',
-      content: 'The driver cabins manufactured by Deepam Engineering are exceptional. Comfortable, durable, and built to withstand long-haul operations. Our drivers love the ergonomic design and ventilation.',
-      rating: 5,
-      project: 'Driver Cabin Series'
-    },
-    {
-      id: 5,
-      name: 'Sunita Patel',
-      position: 'Procurement Manager',
-      company: 'FoodTech Industries',
-      image: 'https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop',
-      content: 'Food-grade containers with excellent hygiene standards. The attention to detail and compliance with food safety regulations is impressive. Highly recommended for food industry applications.',
-      rating: 5,
-      project: 'Food-Grade Containers'
-    }
+  const networkPoints = [
+    { name: 'Coimbatore', left: '13%', top: '26%' },
+    { name: 'Tiruchengode', left: '27%', top: '38%' },
+    { name: 'Tiruchirappalli', left: '39%', top: '47%' },
+    { name: 'Karur', left: '48%', top: '26%' },
+    { name: 'Namakkal', left: '20%', top: '49%' },
+    { name: 'Erode', left: '9%', top: '42%' },
+    { name: 'Salem', left: '26%', top: '61%' },
+    { name: 'Perambalur', left: '47%', top: '59%' },
+    { name: 'Chennai', left: '72%', top: '34%' },
+    { name: 'Madurai', left: '56%', top: '72%' },
+    { name: 'Dindigul', left: '61%', top: '58%' },
+    { name: 'Bengaluru', left: '67%', top: '56%' }
   ];
 
-  // --- 4. JSX Rendering ---
   return (
-    <section 
+    <section
       ref={testimonialsRef}
-      className="py-16 bg-slate-50"
+      className="relative overflow-hidden py-20 bg-[radial-gradient(circle_at_top,_rgba(14,116,144,0.08),_transparent_32%),linear-gradient(180deg,_#f8fafc_0%,_#eff6ff_100%)]"
     >
-      <div className="container mx-auto px-4">
-        <div className="max-w-7xl mx-auto">
-          {/* Section Header */}
-          <div className={`text-center mb-12 transition-all duration-1000 ${
+      <div className="absolute inset-0 opacity-30">
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(148,163,184,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(148,163,184,0.08)_1px,transparent_1px)] bg-[size:30px_30px]" />
+      </div>
+
+      <div className="container relative mx-auto px-4">
+        <div className="mx-auto max-w-7xl">
+          <div className={`mb-12 text-center transition-all duration-1000 ${
             isTestimonialsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}>
-            <span className="text-blue-600 font-semibold text-lg mb-2 block">Testimonials</span>
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
-              What Our Clients Say
+            <span className="mb-3 block text-lg font-bold uppercase tracking-[0.12em] text-blue-700">Network</span>
+            <h2 className="mb-4 text-3xl font-black text-slate-900 md:text-5xl">
+              Deepam Engineering Works across South India
             </h2>
-            <p className="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
-              Don't just take our word for it. Hear from our satisfied clients who have 
-              experienced the quality and reliability of our container solutions.
+            <p className="mx-auto max-w-3xl text-lg leading-relaxed text-slate-600 md:text-xl">
+              Our solutions reach transport businesses and industrial partners across the region, connecting dependable service, quality manufacturing, and long-term customer trust.
             </p>
           </div>
 
-          {/* Testimonials Grid */}
-          <div ref={cardsRef} className="grid md:grid-cols-2 gap-6 mb-12">
-            {testimonials.map((testimonial, index) => (
-              <div 
-                key={testimonial.id}
-                className={`group relative bg-white rounded-2xl p-6 md:p-8 hover:shadow-xl transition-all duration-500 ${
-                  visibleCards[index] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-                }`}
-              >
-                {/* Quote Icon */}
-                <div className="absolute top-6 right-6 w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center group-hover:bg-blue-600 transition-colors duration-300">
-                  <Quote className="text-blue-600 group-hover:text-white transition-colors duration-300" size={20} />
-                </div>
+          <div className={`relative overflow-hidden rounded-[32px] border border-slate-200 bg-slate-950 p-4 shadow-[0_35px_90px_rgba(15,23,42,0.18)] md:p-8 ${
+            isTestimonialsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}>
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(59,130,246,0.18),_transparent_45%),linear-gradient(135deg,_rgba(15,23,42,0.96),_rgba(15,23,42,0.88))]" />
 
-                {/* Rating */}
-                <div className="flex items-center space-x-1 mb-4">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
-                  ))}
-                </div>
+            <div className="relative grid items-center gap-8 lg:grid-cols-[1.1fr_0.9fr]">
+              <div className="relative h-[440px] overflow-hidden rounded-[28px] border border-white/10 bg-slate-900/80">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(59,130,246,0.22),_transparent_45%)]" />
+                <div className="absolute left-1/2 top-1/2 h-[250px] w-[250px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-cyan-400/25" />
+                <div className="absolute left-1/2 top-1/2 h-[330px] w-[330px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-blue-400/15" />
 
-                {/* Content */}
-                <blockquote className="text-base md:text-lg text-slate-700 mb-6 leading-relaxed">
-                  "{testimonial.content}"
-                </blockquote>
+                <svg viewBox="0 0 600 420" className="absolute inset-0 h-full w-full opacity-90">
+                  <path d="M300 210 L120 110" stroke="rgba(110,231,183,0.5)" strokeWidth="2" fill="none" />
+                  <path d="M300 210 L170 165" stroke="rgba(110,231,183,0.45)" strokeWidth="2" fill="none" />
+                  <path d="M300 210 L210 195" stroke="rgba(110,231,183,0.4)" strokeWidth="2" fill="none" />
+                  <path d="M300 210 L242 255" stroke="rgba(110,231,183,0.4)" strokeWidth="2" fill="none" />
+                  <path d="M300 210 L150 200" stroke="rgba(110,231,183,0.35)" strokeWidth="2" fill="none" />
+                  <path d="M300 210 L410 175" stroke="rgba(110,231,183,0.45)" strokeWidth="2" fill="none" />
+                  <path d="M300 210 L440 150" stroke="rgba(110,231,183,0.45)" strokeWidth="2" fill="none" />
+                  <path d="M300 210 L500 160" stroke="rgba(110,231,183,0.5)" strokeWidth="2" fill="none" />
+                  <path d="M300 210 L500 240" stroke="rgba(110,231,183,0.5)" strokeWidth="2" fill="none" />
+                  <path d="M300 210 L360 310" stroke="rgba(110,231,183,0.45)" strokeWidth="2" fill="none" />
+                  <path d="M300 210 L430 300" stroke="rgba(110,231,183,0.4)" strokeWidth="2" fill="none" />
+                  <path d="M300 210 L250 320" stroke="rgba(110,231,183,0.35)" strokeWidth="2" fill="none" />
+                </svg>
 
-                {/* Project */}
-                <div className="text-xs md:text-sm text-blue-600 font-medium mb-4">
-                  Project: {testimonial.project}
-                </div>
-
-                {/* Author */}
-                <div className="flex items-center space-x-4">
-                  <img
-                    src={testimonial.image}
-                    alt={testimonial.name}
-                    className="w-12 h-12 rounded-full object-cover"
-                  />
-                  <div>
-                    <div className="font-bold text-slate-900">{testimonial.name}</div>
-                    <div className="text-xs md:text-sm text-slate-600">
-                      {testimonial.position}, {testimonial.company}
-                    </div>
+                <div className="absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 items-center justify-center">
+                  <div className="relative flex h-28 w-28 items-center justify-center rounded-full border-4 border-emerald-300 bg-white/10 shadow-[0_0_35px_rgba(110,231,183,0.6)] backdrop-blur-sm sm:h-32 sm:w-32">
+                    <div className="absolute inset-2 animate-ping rounded-full border border-emerald-400/60" />
+                    <img
+                      src={companyLogo}
+                      alt="Deepam Engineering Works logo"
+                      className="relative h-full w-full rounded-full object-cover"
+                    />
                   </div>
                 </div>
 
-                {/* Decorative Element */}
-                <div className="absolute bottom-4 left-4 w-8 h-1 bg-blue-600 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                {networkPoints.map((point, index) => (
+                  <div
+                    key={index}
+                    className="absolute -translate-x-1/2 -translate-y-1/2"
+                    style={{ left: point.left, top: point.top }}
+                  >
+                    <div className="relative flex items-center justify-center">
+                      <div className="h-3.5 w-3.5 rounded-full bg-emerald-400 shadow-[0_0_18px_rgba(52,211,153,0.9)]" />
+                      <div className="absolute h-9 w-9 animate-ping rounded-full border border-emerald-400/40" style={{ animationDelay: `${index * 0.45}s` }} />
+                    </div>
+                    <div className="mt-2 rounded-full border border-white/10 bg-slate-950/90 px-2.5 py-1 text-[10px] font-medium text-slate-100 shadow-[0_10px_25px_rgba(15,23,42,0.6)] backdrop-blur-sm sm:text-xs">
+                      {point.name}
+                    </div>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
 
-          {/* Trust Indicators */}
-          <div className={`bg-white rounded-2xl p-6 md:p-8 text-center shadow-lg transition-all duration-1000 delay-500 ${
-            isTestimonialsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-          }`}>
-            <h3 className="text-xl md:text-2xl font-bold text-slate-900 mb-6">
-              Trusted by Leading Companies
-            </h3>
-            
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
-              {/* Company Logos Placeholder */}
-              {['KKR TRANSPORT', 'KMR TRANSPORT', 'UMAVAN & CO', 'G7 LOGISTICS'].map((client, i) => (
-                <div 
-                  key={i}
-                  className="h-12 md:h-16 bg-slate-100 border border-slate-200 rounded-lg flex items-center justify-center p-2"
-                >
-                  <span className="text-xs md:text-sm text-slate-700 font-semibold">{client}</span>
+              <div className="relative z-10 text-white">
+                <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-cyan-400/30 bg-cyan-500/10 px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.14em] text-cyan-200">
+                  <Navigation size={14} />
+                  South India Reach
                 </div>
-              ))}
-            </div>
 
-            <div className="mt-6 pt-6 border-t border-slate-200">
-              <div className="grid grid-cols-3 gap-4 md:gap-8 max-w-2xl mx-auto">
-                <div className="text-center">
-                  <div className="text-xl md:text-2xl font-bold text-blue-600 mb-2">99%</div>
-                  <div className="text-xs md:text-sm text-slate-600">Client Satisfaction</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-xl md:text-2xl font-bold text-blue-600 mb-2">95%</div>
-                  <div className="text-xs md:text-sm text-slate-600">Repeat Business</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-xl md:text-2xl font-bold text-blue-600 mb-2">4.9/5</div>
-                  <div className="text-xs md:text-sm text-slate-600">Average Rating</div>
+                <h3 className="mb-4 text-3xl font-black leading-tight text-white md:text-4xl">
+                  Serving logistics and transport partners throughout the region.
+                </h3>
+
+                <p className="max-w-xl text-base leading-relaxed text-slate-300 md:text-lg">
+                  From Coimbatore to Chennai, and across key transport corridors in Tamil Nadu and South India, Deepam Engineering Works continues to build strong customer relationships through reliable container solutions and responsive service.
+                </p>
+
+                <div className="mt-8 grid gap-4 sm:grid-cols-2">
+                  <div className="rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur-sm">
+                    <div className="mb-2 flex items-center gap-2 text-cyan-300">
+                      <MapPinned size={16} />
+                      <span className="text-sm font-semibold uppercase tracking-[0.08em]">Coverage</span>
+                    </div>
+                    <p className="text-sm text-slate-200">Coimbatore, Tiruchengode, Tiruchirappalli, Karur, Namakkal, Erode, Salem, Chennai, Madurai and other key Tamil Nadu hubs.</p>
+                  </div>
+
+                  <div className="rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur-sm">
+                    <div className="mb-2 flex items-center gap-2 text-emerald-300">
+                      <Sparkles size={16} />
+                      <span className="text-sm font-semibold uppercase tracking-[0.08em]">Network</span>
+                    </div>
+                    <p className="text-sm text-slate-200">Trusted by transport companies across Tamil Nadu who rely on dependable, performance-focused engineering support.</p>
+                  </div>
                 </div>
               </div>
             </div>

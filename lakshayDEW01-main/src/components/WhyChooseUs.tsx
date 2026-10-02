@@ -42,28 +42,30 @@ const WhyChooseUs: React.FC = () => {
   return (
     <section 
       ref={whyChooseRef}
-      className="py-20 bg-white/70"
+      className="py-16 bg-white"
     >
       <div className="container mx-auto px-4">
         <div className="max-w-7xl mx-auto">
-          <div className={`mb-12 text-center transition-all duration-1000 ${
+          {/* Section Header */}
+          <div className={`text-center mb-12 transition-all duration-1000 ${
             isWhyChooseVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}>
-            <span className="mb-3 block text-lg font-bold tracking-[0.12em] text-blue-700 uppercase">Why Choose Us</span>
-            <h2 className="mb-4 text-3xl font-black text-slate-900 md:text-5xl">
+            <span className="text-blue-600 font-semibold text-lg mb-2 block">Why Choose Us</span>
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
               Excellence in Every Detail
             </h2>
-            <p className="mx-auto max-w-3xl text-lg leading-relaxed text-slate-600 md:text-xl">
+            <p className="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
               Our commitment to quality, innovation, and customer satisfaction sets us apart 
               in the container manufacturing industry.
             </p>
           </div>
 
-          <div ref={featuresRef} className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+          {/* Features Grid */}
+          <div ref={featuresRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {features.map((feature, index) => (
               <div 
                 key={index}
-                className={`group relative p-6 md:p-8 bg-white rounded-2xl border border-slate-200 shadow-[0_18px_45px_rgba(15,23,42,0.04)] transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_28px_60px_rgba(37,99,235,0.10)] ${
+                className={`group relative p-6 md:p-8 bg-white rounded-xl border border-slate-200 hover:border-transparent hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 ${
                   visibleFeatures[index] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
                 }`}
               >

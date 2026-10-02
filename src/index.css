@@ -2,15 +2,213 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Base responsive styles */
+:root {
+  --brand-900: #0f172a;
+  --brand-800: #172554;
+  --brand-700: #1d4ed8;
+  --brand-600: #2563eb;
+  --brand-500: #3b82f6;
+  --brand-400: #60a5fa;
+  --accent-500: #22c55e;
+  --neutral-50: #f8fafc;
+  --neutral-100: #f1f5f9;
+  --neutral-200: #e2e8f0;
+  --neutral-300: #cbd5e1;
+  --neutral-600: #475569;
+  --neutral-700: #334155;
+  --neutral-900: #0f172a;
+}
+
 * {
   box-sizing: border-box;
 }
 
-/* Smooth scrolling for the entire page */
 html {
   scroll-behavior: smooth;
   font-size: 16px;
+  background: var(--neutral-50);
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  overflow-x: hidden;
+  background: linear-gradient(180deg, #f8fafc 0%, #eef2ff 100%);
+  color: var(--neutral-900);
+  font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  letter-spacing: -0.01em;
+}
+
+#root {
+  min-width: 0;
+  overflow-x: hidden;
+}
+
+input,
+select,
+textarea,
+button {
+  max-width: 100%;
+  font-family: inherit;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: 'Outfit', 'Plus Jakarta Sans', -apple-system, sans-serif;
+  letter-spacing: -0.025em;
+  overflow-wrap: anywhere;
+}
+
+p {
+  overflow-wrap: anywhere;
+}
+
+.steel-intro {
+  position: absolute;
+  inset: 0;
+  z-index: 30;
+  overflow: hidden;
+  background: #090d12;
+}
+
+.steel-plate {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, #111820 0%, #303b45 42%, #11171d 58%, #202a32 100%);
+  box-shadow: inset 0 0 0 1px rgba(226, 232, 240, 0.12), inset 0 0 100px rgba(0, 0, 0, 0.65);
+}
+
+.steel-plate::after {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(90deg, transparent 0, transparent 11px, rgba(255, 255, 255, 0.025) 12px, transparent 13px);
+  content: '';
+  opacity: 0.4;
+}
+
+.steel-intro-content {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.steel-logo-frame {
+  display: grid;
+  place-items: center;
+  width: clamp(5rem, 16vw, 8rem);
+  aspect-ratio: 1;
+  border: 1px solid rgba(226, 232, 240, 0.35);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.1), transparent 68%);
+  box-shadow: 0 0 0 8px rgba(15, 23, 42, 0.2), inset 0 0 25px rgba(255, 255, 255, 0.08), 0 0 35px rgba(125, 211, 252, 0.12);
+}
+
+.steel-logo {
+  width: 72%;
+  height: 72%;
+  border-radius: 50%;
+  filter: grayscale(1) brightness(1.65) contrast(1.2);
+  mix-blend-mode: screen;
+}
+
+.steel-intro-label,
+.industrial-kicker {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: #a5f3fc;
+}
+
+.weld-sparks {
+  position: absolute;
+  inset: 50% auto auto 50%;
+  z-index: 3;
+  width: 1px;
+  height: 1px;
+}
+
+.weld-spark {
+  position: absolute;
+  display: block;
+  width: 3px;
+  height: 18px;
+  border-radius: 999px;
+  background: #fef08a;
+  box-shadow: 0 0 12px 2px #facc15, 0 0 24px 4px rgba(249, 115, 22, 0.7);
+}
+
+.weld-spark:nth-child(1) { transform: rotate(12deg) translateY(-3.5rem); }
+.weld-spark:nth-child(2) { transform: rotate(58deg) translateY(-4rem); }
+.weld-spark:nth-child(3) { transform: rotate(105deg) translateY(-3rem); }
+.weld-spark:nth-child(4) { transform: rotate(155deg) translateY(-4.5rem); }
+.weld-spark:nth-child(5) { transform: rotate(205deg) translateY(-3.5rem); }
+.weld-spark:nth-child(6) { transform: rotate(245deg) translateY(-4rem); }
+.weld-spark:nth-child(7) { transform: rotate(292deg) translateY(-3rem); }
+.weld-spark:nth-child(8) { transform: rotate(340deg) translateY(-4.25rem); }
+
+.process-blueprint {
+  background-image: linear-gradient(rgba(103, 232, 249, 0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(103, 232, 249, 0.08) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: linear-gradient(to bottom, transparent, black 18%, black 82%, transparent);
+}
+
+.container-brand-mark {
+  position: absolute;
+  left: 11%;
+  top: 27%;
+  width: 78%;
+  height: auto;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  opacity: 0.88;
+  transform: perspective(900px) rotateY(-5deg) rotateX(1deg);
+  transform-origin: center;
+  filter: contrast(1.05) drop-shadow(1px 2px 1px rgba(15, 23, 42, 0.65));
+}
+
+@media (max-width: 640px) {
+  .container-brand-mark {
+    left: 7%;
+    top: 29%;
+    width: 86%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .steel-intro {
+    display: none;
+  }
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button, a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #e2e8f0;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #60a5fa, #1d4ed8);
+  border-radius: 9999px;
 }
 
 /* Responsive font scaling */
@@ -503,3 +701,41 @@ button:disabled {
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
+/* Footer Scroll-Triggered Container Truck Animation */
+
+/* Truck drives from off-screen left to off-screen right in 3.5s on scroll-in */
+@keyframes truckDrive {
+  0% {
+    left: -220px;
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  88% {
+    opacity: 1;
+  }
+  100% {
+    left: calc(100% + 40px);
+    opacity: 0;
+  }
+}
+
+/* Road center dashes scroll backward to simulate forward motion */
+@keyframes roadLines {
+  0% {
+    transform: translateX(0) translateY(-50%);
+  }
+  100% {
+    transform: translateX(-60%) translateY(-50%);
+  }
+}
+
+/* Subtle wheel dust cloud puffs */
+@keyframes dustPuff {
+  0%   { transform: scaleX(0.6) scaleY(0.6); opacity: 0.2; }
+  50%  { transform: scaleX(1.4) scaleY(0.8); opacity: 0.08; }
+  100% { transform: scaleX(0.6) scaleY(0.6); opacity: 0.2; }
+}
+

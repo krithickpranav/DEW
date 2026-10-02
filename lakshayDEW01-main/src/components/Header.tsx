@@ -4,7 +4,7 @@ import { Menu, X, Phone, Mail, GitCompare } from 'lucide-react';
 import LanguageSelector from './LanguageSelector';
 import ComparisonTool from './ComparisonTool';
 import { useLanguage } from '../contexts/LanguageContext';
-import companyLogo from '../../gallery/logo/ChatGPT Image Mar 5, 2026, 01_53_39 PM.png';
+import companyLogo from '../assets/logo/ChatGPT Image Mar 5, 2026, 01_53_39 PM.webp';
 
 const CompanyLogo: React.FC = () => (
   <div className="relative flex h-10 w-10 items-center justify-center overflow-hidden rounded-full bg-white shadow-[0_0_0_3px_rgba(143,227,85,0.22),0_18px_30px_rgba(16,185,129,0.22)] sm:h-12 sm:w-12">

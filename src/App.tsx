@@ -14,6 +14,8 @@ import Gallery from './components/Gallery';
 import ContactPage from './pages/ContactPage';
 import CertificationPage from './pages/CertificationPage';
 import Chatbot from './components/Chatbot';
+import ManufacturingProcess from './components/ManufacturingProcess';
+import ScrollDrivingTruck from './components/ScrollDrivingTruck';
 
 function App() {
   // --- 2. State Management ---
@@ -63,6 +65,7 @@ function App() {
         return (
           <>
             <Hero />
+            <ManufacturingProcess />
             <About />
             <Achievement />
             <WhyChooseUs />
@@ -74,7 +77,7 @@ function App() {
 
   // --- 6. JSX Rendering ---
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-[radial-gradient(circle_at_top,_#f8fafc_0%,_#eef2ff_32%,_#f8fafc_100%)] text-slate-800">
       <Header 
         isMenuOpen={isMenuOpen} 
         setIsMenuOpen={setIsMenuOpen}
@@ -82,7 +85,7 @@ function App() {
         setCurrentPage={setCurrentPage}
       />
       
-      <main>
+      <main className="overflow-hidden pb-12">
         {renderPage()}
       </main>
 
@@ -91,7 +94,7 @@ function App() {
       {/* Floating Action Buttons - Right Side */}
       <div 
         ref={fabRef}
-        className={`fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40 flex flex-col space-y-3 transition-all duration-1000 ${
+        className={`fixed bottom-3 right-3 sm:bottom-6 sm:right-6 z-40 flex flex-col space-y-3 transition-all duration-1000 ${
           isFabVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'
         }`}
       >
@@ -125,20 +128,20 @@ function App() {
 
       {/* Sticky Get Quote Button - Left Side */}
       <div 
-        className={`fixed bottom-4 left-4 sm:bottom-6 sm:left-6 z-40 transition-all duration-1000 ${
+        className={`fixed bottom-3 left-3 sm:bottom-6 sm:left-6 z-40 transition-all duration-1000 ${
           isFabVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'
         }`}
       >
         <button
           onClick={() => setCurrentPage('contact')}
-          className="group bg-gradient-to-r from-blue-600 to-cyan-500 text-white px-4 sm:px-6 py-3 sm:py-4 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 flex items-center space-x-2 font-semibold text-sm sm:text-base"
+          className="group bg-gradient-to-r from-blue-600 to-cyan-500 text-white px-3 sm:px-6 py-3 sm:py-4 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 flex items-center space-x-2 font-semibold text-xs sm:text-base"
         >
           <span className="hidden sm:inline">Get Free Quote</span>
           <span className="sm:hidden">Quote</span>
           <ArrowUp size={20} className="rotate-90 group-hover:translate-x-1 transition-transform" />
         </button>
       </div>
-
+      <ScrollDrivingTruck />
     </div>
   );
 }

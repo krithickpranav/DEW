@@ -28,7 +28,7 @@ const CertificationPage: React.FC = () => {
               <span className="text-sm font-semibold tracking-wide">ARAI CERTIFIED</span>
             </div>
             
-            <h1 className="text-4xl md:text-6xl font-bold text-slate-900 mb-6 leading-tight">
+            <h1 className="mb-6 text-3xl font-bold leading-tight text-slate-900 sm:text-4xl md:text-6xl">
               ARAI Certified<br />
               <span className="bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
                 Bus Body Builder
@@ -43,12 +43,12 @@ const CertificationPage: React.FC = () => {
               for Bus Body Building.
             </p>
 
-            <div className="mt-8 flex justify-center gap-4">
-              <div className="flex items-center gap-2 bg-white px-6 py-3 rounded-lg shadow-md">
+            <div className="mt-8 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center sm:gap-4">
+              <div className="flex items-center justify-center gap-2 rounded-lg bg-white px-4 py-3 text-center shadow-md sm:px-6">
                 <BadgeCheck className="text-green-600" size={24} />
                 <span className="font-semibold text-slate-900">Government Approved</span>
               </div>
-              <div className="flex items-center gap-2 bg-white px-6 py-3 rounded-lg shadow-md">
+              <div className="flex items-center justify-center gap-2 rounded-lg bg-white px-4 py-3 text-center shadow-md sm:px-6">
                 <Award className="text-blue-600" size={24} />
                 <span className="font-semibold text-slate-900">CMVR Compliant</span>
               </div>
@@ -63,7 +63,7 @@ const CertificationPage: React.FC = () => {
             }`}
           >
             <div className="bg-white rounded-2xl shadow-2xl overflow-hidden border border-slate-200">
-              <div className="bg-gradient-to-r from-blue-600 to-blue-800 p-8 text-white">
+              <div className="bg-gradient-to-r from-blue-600 to-blue-800 p-5 text-white sm:p-8">
                 <div className="flex items-center justify-center mb-4">
                   <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
                     <FileCheck size={32} />
@@ -73,7 +73,7 @@ const CertificationPage: React.FC = () => {
                 <p className="text-center text-blue-100 text-lg">Bus Body Building</p>
               </div>
 
-              <div className="p-8 md:p-12">
+              <div className="p-5 sm:p-8 md:p-12">
                 <div className="grid md:grid-cols-2 gap-8">
                   <div className="space-y-6">
                     <div className="flex items-start gap-4">
@@ -95,7 +95,7 @@ const CertificationPage: React.FC = () => {
                       <div>
                         <p className="text-sm text-slate-500 mb-1">Certificate Number</p>
                         <p className="text-lg font-semibold text-slate-900 font-mono">
-                          ARAI/BBB/22-23/3000022181/454, Ext 01
+                          <span className="break-all">ARAI/BBB/22-23/3000022181/454, Ext 01</span>
                         </p>
                       </div>
                     </div>
@@ -148,7 +148,7 @@ const CertificationPage: React.FC = () => {
             </div>
 
             <div className="grid md:grid-cols-3 gap-6">
-              <div className="bg-white rounded-xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 border border-slate-200">
+              <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl sm:p-8">
                 <div className="w-14 h-14 bg-gradient-to-br from-blue-600 to-blue-700 rounded-lg flex items-center justify-center mb-4 mx-auto">
                   <Building2 className="text-white" size={28} />
                 </div>
@@ -156,7 +156,7 @@ const CertificationPage: React.FC = () => {
                 <p className="text-slate-600 text-center text-lg">M/s Deepam Engineering</p>
               </div>
 
-              <div className="bg-white rounded-xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 border border-slate-200">
+              <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl sm:p-8">
                 <div className="w-14 h-14 bg-gradient-to-br from-blue-600 to-blue-700 rounded-lg flex items-center justify-center mb-4 mx-auto">
                   <MapPin className="text-white" size={28} />
                 </div>
@@ -166,7 +166,7 @@ const CertificationPage: React.FC = () => {
                 </p>
               </div>
 
-              <div className="bg-white rounded-xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 border border-slate-200">
+              <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl sm:p-8">
                 <div className="w-14 h-14 bg-gradient-to-br from-blue-600 to-blue-700 rounded-lg flex items-center justify-center mb-4 mx-auto">
                   <User className="text-white" size={28} />
                 </div>

@@ -4,60 +4,59 @@ import { ArrowLeft, Download, MessageCircle, Phone, Package, Truck, Eye, Shield,
 import { useScrollAnimation, useStaggeredAnimation } from '../hooks/useScrollAnimation';
 
 // --- 2. Asset Imports ---
-// Main Category Images
-const container32feet2 = new URL('../assets/container photos/32feet2.jpg', import.meta.url).href;
-const cabinAero1 = new URL('../assets/cabin photos/aero1.jpg', import.meta.url).href;
-
+// --- 2. Asset Imports ---
 // Container Model Images
-const container10feet1 = new URL('../assets/container photos/10feet1.jpg', import.meta.url).href;
-const container20feet1 = new URL('../assets/container photos/20feet1.jpg', import.meta.url).href;
-const container32feet1 = new URL('../assets/container photos/32feet1.jpg', import.meta.url).href;
-const containerExportRig1 = new URL('../assets/container photos/exportrig1.jpg', import.meta.url).href;
-const containerAllDoor1 = new URL('../assets/container photos/alldorr1.jpg', import.meta.url).href;
-const container10feet2 = new URL('../assets/container photos/10feet2.jpg', import.meta.url).href;
-const container10feet3 = new URL('../assets/container photos/10feet3.jpg', import.meta.url).href;
-const container20feet2 = new URL('../assets/container photos/20feet2.jpg', import.meta.url).href;
-const container20feet3 = new URL('../assets/container photos/20feet3.jpg', import.meta.url).href;
-const container20feet4 = new URL('../assets/container photos/20feet4.jpg', import.meta.url).href;
-const container24feet1 = new URL('../assets/container photos/24feet1.jpg', import.meta.url).href;
-const container24feet2 = new URL('../assets/container photos/24feet2.jpg', import.meta.url).href;
-const container24feet3 = new URL('../assets/container photos/24feet3.jpg', import.meta.url).href;
-const container24feet4 = new URL('../assets/container photos/24feet4.jpg', import.meta.url).href;
-const container32feet3 = new URL('../assets/container photos/32feet3.jpg', import.meta.url).href;
-const container32feet4 = new URL('../assets/container photos/32feet4.jpg', import.meta.url).href;
-const container32feet5 = new URL('../assets/container photos/32feet5.jpg', import.meta.url).href;
-const containerExportRig2 = new URL('../assets/container photos/exportrig2.jpg', import.meta.url).href;
-const containerExportRig3 = new URL('../assets/container photos/exportrig3.jpg', import.meta.url).href;
-const containerExportRig4 = new URL('../assets/container photos/exportrig4.jpg', import.meta.url).href;
-const containerExportRig5 = new URL('../assets/container photos/exportrig5.jpg', import.meta.url).href;
-const containerAllDoor2 = new URL('../assets/container photos/alldoor2.jpg', import.meta.url).href;
-const containerAllDoor3 = new URL('../assets/container photos/alldoor3.jpg', import.meta.url).href;
+import container10feet1 from '../assets/container photos/10 Feet Container01.webp';
+import container10feet2 from '../assets/container photos/10 Feet Container02.webp';
+import container10feet3 from '../assets/container photos/10 Feet Container03.webp';
+import container20feet1 from '../assets/container photos/20 & 24 Feet Container01.webp';
+import container20feet2 from '../assets/container photos/20 & 24 Feet Container02.webp';
+import container20feet3 from '../assets/container photos/20 & 24 Feet Container03.webp';
+import container20feet4 from '../assets/container photos/20 & 24 Feet Container.04.webp';
+import container24feet1 from '../assets/container photos/20 & 24 Feet Container.05.webp';
+import container24feet2 from '../assets/container photos/20 & 24 Feet Container.06.webp';
+import container24feet3 from '../assets/container photos/20 & 24 Feet Container07.webp';
+import container24feet4 from '../assets/container photos/20 & 24 Feet Container01.webp';
+import container32feet1 from '../assets/container photos/32feetcontainer01.webp';
+import container32feet2 from '../assets/container photos/32feetcontainer02.webp';
+import container32feet3 from '../assets/container photos/32feetcontainer03.webp';
+import container32feet4 from '../assets/container photos/32feetcontainer04.webp';
+import container32feet5 from '../assets/container photos/32feetcontainer05.webp';
+import containerExportRig1 from '../assets/container photos/exportrig1.webp';
+import containerExportRig2 from '../assets/container photos/exportrig2.webp';
+import containerExportRig3 from '../assets/container photos/exportrig3.webp';
+import containerExportRig4 from '../assets/container photos/exportrig4.webp';
+import containerExportRig5 from '../assets/container photos/exportrig5.webp';
+import containerAllDoor1 from '../assets/container photos/alldorr1.webp';
+import containerAllDoor2 from '../assets/container photos/alldoor2.webp';
+import containerAllDoor3 from '../assets/container photos/alldoor3.webp';
 
 // Lorry Cabin Model Images
-const cabinAero2 = new URL('../assets/cabin photos/aero2.jpg', import.meta.url).href;
-const cabinAero3 = new URL('../assets/cabin photos/aero3.jpg', import.meta.url).href;
-const cabinAero4 = new URL('../assets/cabin photos/aero4.jpg', import.meta.url).href;
-const cabinStr1 = new URL('../assets/cabin photos/straighht1.jpg', import.meta.url).href;
-const cabinStr2 = new URL('../assets/cabin photos/straight2.jpg', import.meta.url).href;
-const cabinStr3 = new URL('../assets/cabin photos/straight3.jpg', import.meta.url).href;
-const cabinStr4 = new URL('../assets/cabin photos/straight4.jpg', import.meta.url).href;
-const cabinStr5 = new URL('../assets/cabin photos/straight5.jpg', import.meta.url).href;
-const cabinStr6 = new URL('../assets/cabin photos/straight6.jpg', import.meta.url).href;
-const cabinKarur1 = new URL('../assets/cabin photos/karur1.jpg', import.meta.url).href;
-const cabinKarur2 = new URL('../assets/cabin photos/karur2.jpg', import.meta.url).href;
-const cabinKarur3 = new URL('../assets/cabin photos/karur3.jpg', import.meta.url).href;
-const cabinKarur4 = new URL('../assets/cabin photos/karur4.jpg', import.meta.url).href;
-const cabinKarur5 = new URL('../assets/cabin photos/karur5.jpg', import.meta.url).href;
-const cabinCentreAir1 = new URL('../assets/cabin photos/centre air.jpg', import.meta.url).href;
-const cabinCentreAir2 = new URL('../assets/cabin photos/centreair2.jpg', import.meta.url).href;
-const cabinCentreAir3 = new URL('../assets/cabin photos/centre air3.jpg', import.meta.url).href;
-const cabinCurved1 = new URL('../assets/cabin photos/curvedtpe1.jpg', import.meta.url).href;
-const cabinCurved2 = new URL('../assets/cabin photos/curvettype2.jpg', import.meta.url).href;
-const cabinCurved3 = new URL('../assets/cabin photos/curvedtype3.jpg', import.meta.url).href;
-const cabinCustom1 = new URL('../assets/cabin photos/custom1.jpg', import.meta.url).href;
-const cabinCustom2 = new URL('../assets/cabin photos/custom2.jpg', import.meta.url).href;
-const cabinCustom3 = new URL('../assets/cabin photos/custom3.jpg', import.meta.url).href;
-const cabinCustom4 = new URL('../assets/cabin photos/custom4.jpg', import.meta.url).href;
+import cabinAero1 from '../assets/cabin photos/Aerodynamic Cabin01.webp';
+import cabinAero2 from '../assets/cabin photos/Aerodynamic Cabin02.webp';
+import cabinAero3 from '../assets/cabin photos/Aerodynamic Cabin03.webp';
+import cabinAero4 from '../assets/cabin photos/Aerodynamic Cabin01.webp';
+import cabinStr1 from '../assets/cabin photos/Straight Type Cabin01.webp';
+import cabinStr2 from '../assets/cabin photos/Straight Type Cabin02.webp';
+import cabinStr3 from '../assets/cabin photos/Straight Type Cabin03.webp';
+import cabinStr4 from '../assets/cabin photos/Straight Type Cabin01.webp';
+import cabinStr5 from '../assets/cabin photos/Straight Type Cabin02.webp';
+import cabinStr6 from '../assets/cabin photos/Straight Type Cabin03.webp';
+import cabinKarur1 from '../assets/cabin photos/Cabin with Karur Grill01.webp';
+import cabinKarur2 from '../assets/cabin photos/Cabin with Karur Grill02.webp';
+import cabinKarur3 from '../assets/cabin photos/Cabin with Karur Grill03.webp';
+import cabinKarur4 from '../assets/cabin photos/Cabin with Karur Grill01.webp';
+import cabinKarur5 from '../assets/cabin photos/Cabin with Karur Grill02.webp';
+import cabinCentreAir1 from '../assets/cabin photos/Cabin with Centre Air Glass01.webp';
+import cabinCentreAir2 from '../assets/cabin photos/Cabin with Centre Air Glass02.webp';
+import cabinCentreAir3 from '../assets/cabin photos/Cabin with Centre Air Glass01.webp';
+import cabinCurved1 from '../assets/cabin photos/Curved Type Air Cutter Vehicle01.webp';
+import cabinCurved2 from '../assets/cabin photos/Curved Type Air Cutter Vehicle02.webp';
+import cabinCurved3 from '../assets/cabin photos/Curved Type Air Cutter Vehicle03.webp';
+import cabinCustom1 from '../assets/cabin photos/Straight Type Cabin01.webp';
+import cabinCustom2 from '../assets/cabin photos/Straight Type Cabin02.webp';
+import cabinCustom3 from '../assets/cabin photos/Straight Type Cabin03.webp';
+import cabinCustom4 from '../assets/cabin photos/Aerodynamic Cabin01.webp';
 
 // --- 3. Type Definitions ---
 type View = 'main' | 'container-models' | 'lorry-models' | 'container-specs' | 'lorry-specs';
@@ -1063,8 +1062,8 @@ const renderMainCategories = () => (
           />
           <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/50 to-transparent"></div>
 
-          <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12">
-            <h1 className="text-3xl md:text-5xl font-bold text-white mb-4">
+          <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-8 md:p-12">
+            <h1 className="mb-4 text-2xl font-bold text-white sm:text-3xl md:text-5xl">
               {specs.title}
             </h1>
             <p className="text-xl md:text-2xl text-white/90 font-light">
@@ -1301,8 +1300,8 @@ const renderMainCategories = () => (
           />
           <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/50 to-transparent"></div>
 
-          <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12">
-            <h1 className="text-3xl md:text-5xl font-bold text-white mb-4">
+          <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-8 md:p-12">
+            <h1 className="mb-4 text-2xl font-bold text-white sm:text-3xl md:text-5xl">
               {specs.title}
             </h1>
             <p className="text-xl md:text-2xl text-white/90 font-light">
@@ -1490,7 +1489,7 @@ const renderMainCategories = () => (
                   : 'Detailed Specifications'}
               </span>
             </div>
-            <h1 className="text-4xl md:text-6xl font-bold text-slate-900 mb-6 leading-tight">
+            <h1 className="mb-6 text-3xl font-bold leading-tight text-slate-900 sm:text-4xl md:text-6xl">
               {currentView === 'main'
                 ? 'Our Product Range'
                 : currentView === 'container-models'

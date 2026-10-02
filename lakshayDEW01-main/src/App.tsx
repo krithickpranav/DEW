@@ -15,6 +15,7 @@ import ContactPage from './pages/ContactPage';
 import CertificationPage from './pages/CertificationPage';
 import Chatbot from './components/Chatbot';
 import ManufacturingProcess from './components/ManufacturingProcess';
+import ScrollDrivingTruck from './components/ScrollDrivingTruck';
 
 function App() {
   // --- 2. State Management ---
@@ -84,7 +85,7 @@ function App() {
         setCurrentPage={setCurrentPage}
       />
       
-      <main className="overflow-hidden">
+      <main className="overflow-hidden pb-12">
         {renderPage()}
       </main>
 
@@ -140,7 +141,7 @@ function App() {
           <ArrowUp size={20} className="rotate-90 group-hover:translate-x-1 transition-transform" />
         </button>
       </div>
-
+      <ScrollDrivingTruck />
     </div>
   );
 }

@@ -1,9 +1,11 @@
 // --- 1. Imports ---
-import React, { useState, useEffect } from 'react';
+import React, { useLayoutEffect, useRef, useState, useEffect } from 'react';
 import heroImage from '../assets/home page phot and logo/logistics-import-export-background-of-container-truck-at-the-dock.jpg';
-import { ArrowRight, FileText, Phone } from 'lucide-react';
+import companyLogo from '../assets/logo/ChatGPT Image Mar 5, 2026, 01_53_39 PM.webp';
+import { ArrowRight, FileText } from 'lucide-react';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import { useLanguage } from '../contexts/LanguageContext';
+import gsap from 'gsap';
 
 // --- 2. Component Props Interface ---
 interface HeroProps {
@@ -15,14 +17,14 @@ const useCountUp = (end: number, duration: number = 2000, isVisible: boolean) =>
 
   useEffect(() => {
     if (!isVisible) return;
-    
+
     let startTime: number | null = null;
     const startValue = 0;
 
     const animate = (currentTime: number) => {
       if (!startTime) startTime = currentTime;
       const progress = Math.min((currentTime - startTime) / duration, 1);
-      
+
       setCount(Math.floor(progress * (end - startValue) + startValue));
 
       if (progress < 1) {
@@ -40,126 +42,172 @@ const Hero: React.FC<HeroProps> = () => {
   // --- 4. Hooks ---
   const { t } = useLanguage();
   const [heroRef, isHeroVisible] = useScrollAnimation(0.2);
-  
+  const introRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+
   // Animated counters
   const containersCount = useCountUp(500, 2000, isHeroVisible);
   const yearsCount = useCountUp(15, 2000, isHeroVisible);
   const clientsCount = useCountUp(100, 2000, isHeroVisible);
   const supportCount = useCountUp(24, 1500, isHeroVisible);
+
+  useLayoutEffect(() => {
+    const intro = introRef.current;
+    const content = contentRef.current;
+    if (!intro || !content) return;
+
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const context = gsap.context(() => {
+      const plateTop = intro.querySelector<HTMLElement>('.steel-plate-top');
+      const plateBottom = intro.querySelector<HTMLElement>('.steel-plate-bottom');
+      const sparks = intro.querySelectorAll<HTMLElement>('.weld-spark');
+      const logo = intro.querySelector<HTMLElement>('.steel-logo');
+      const label = intro.querySelector<HTMLElement>('.steel-intro-label');
+
+      if (reducedMotion) {
+        gsap.set(intro, { autoAlpha: 0, pointerEvents: 'none' });
+        gsap.set(content, { autoAlpha: 1, y: 0 });
+        return;
+      }
+
+      gsap.set(content, { autoAlpha: 0, y: 24 });
+      gsap.set([plateTop, plateBottom], { xPercent: 0 });
+      gsap.set(logo, { autoAlpha: 0, scale: 0.86, filter: 'blur(8px)' });
+      gsap.set(label, { autoAlpha: 0, y: 10 });
+      gsap.set(sparks, { autoAlpha: 0, scale: 0.2 });
+
+      const timeline = gsap.timeline({ delay: 0.15 });
+      timeline
+        .to(sparks, { autoAlpha: 1, scale: 1, stagger: 0.04, duration: 0.18, ease: 'power2.out' })
+        .to(sparks, { autoAlpha: 0, y: -18, stagger: 0.03, duration: 0.5, ease: 'power2.in' }, '<0.08')
+        .to(logo, { autoAlpha: 1, scale: 1, filter: 'blur(0px)', duration: 0.8, ease: 'power3.out' }, '-=0.25')
+        .to(label, { autoAlpha: 1, y: 0, duration: 0.35, ease: 'power2.out' }, '-=0.35')
+        .to(content, { autoAlpha: 1, y: 0, duration: 0.8, ease: 'power3.out' }, '+=0.15')
+        .to(plateTop, { yPercent: -100, duration: 1.15, ease: 'power4.inOut' }, '+=0.1')
+        .to(plateBottom, { yPercent: 100, duration: 1.15, ease: 'power4.inOut' }, '<')
+        .to(intro, { autoAlpha: 0, pointerEvents: 'none', duration: 0.2 }, '-=0.15');
+    }, intro);
+
+    return () => context.revert();
+  }, []);
   // --- 4. JSX Rendering ---
   return (
-    <section 
+    <section
       ref={heroRef}
-      id="home" 
-      className="relative h-[90vh] sm:h-screen flex items-center justify-center overflow-hidden pt-20 sm:pt-24 md:pt-28"
+      id="home"
+      className="relative flex h-[92vh] items-center justify-center overflow-hidden pt-20 sm:h-screen sm:pt-24 md:pt-28"
     >
-      {/* Background Image with Overlay */}
-      <div 
-        className="absolute inset-0 bg-cover bg-bottom bg-no-repeat filter contrast-125 brightness-110"
+      <div ref={introRef} className="steel-intro" aria-hidden="true">
+        <div className="steel-plate steel-plate-top" />
+        <div className="steel-plate steel-plate-bottom" />
+        <div className="steel-intro-content">
+          <div className="steel-logo-frame">
+            <img src={companyLogo} alt="" className="steel-logo" />
+          </div>
+          <span className="steel-intro-label">PRECISION ENGINEERING / DEW</span>
+        </div>
+        <div className="weld-sparks">
+          {[0, 1, 2, 3, 4, 5, 6, 7].map((spark) => <span key={spark} className="weld-spark" />)}
+        </div>
+      </div>
+      <div
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
           backgroundImage: `url(${heroImage})`
         }}
       >
-        <div className="absolute inset-0 bg-slate-900/80"></div>
+        <div className="absolute inset-0 bg-slate-950/70" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(59,130,246,0.35),_transparent_38%),linear-gradient(135deg,rgba(15,23,42,0.9),rgba(15,23,42,0.75))]" />
       </div>
 
-      {/* Content */}
-      <div className={`relative z-10 container mx-auto px-4 py-16 transition-all duration-1000 ${
-        isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-      }`}>
-        <div className="max-w-5xl mx-auto text-center text-white">
-          {/* Badge */}
-          <div className={`inline-flex items-center bg-blue-600/20 backdrop-blur-sm border border-blue-400/30 rounded-full px-4 sm:px-6 py-2 mb-6 sm:mb-8 transition-all duration-1000 delay-200 ${
-            isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
-          }`}>
-            <span className="w-2 h-2 bg-blue-400 rounded-full mr-3 animate-pulse"></span>
-            <span className="text-blue-200 text-xs sm:text-sm font-medium">{t('hero.badge')}</span>
+      <div ref={contentRef} className={`relative z-10 container mx-auto px-4 py-16 transition-all duration-1000 ${isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+        }`}>
+        <div className="mx-auto max-w-5xl text-center text-white">
+          {/* Live Eyebrow Badge */}
+          <div className={`mb-6 inline-flex items-center gap-2.5 rounded-full border border-orange-500/30 bg-slate-950/75 px-4 py-2 text-xs font-semibold tracking-wider uppercase text-orange-300 shadow-xl shadow-orange-950/30 backdrop-blur-md sm:px-6 sm:text-sm ${isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
+            }`}>
+            <span className="relative flex h-2.5 w-2.5">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-orange-500"></span>
+            </span>
+            <span>{t('hero.badge')}</span>
           </div>
 
           {/* Main Headline */}
-          <h1 className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 sm:mb-6 leading-tight transition-all duration-1000 delay-400 ${
-            isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-          }`}>
-            <span className="block text-white">{t('hero.title')}</span>
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300 mt-1 sm:mt-2">
-              {t('hero.subtitle')}
+          <h1 className={`mb-6 text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black uppercase tracking-tight leading-[1.08] transition-all duration-1000 ${isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+            }`}>
+            <span className="block font-['Outfit'] text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.6)]">
+              DEEPAM ENGINEERING WORKS.
+            </span>
+            <span className="mt-2 sm:mt-3 block font-['Outfit'] bg-gradient-to-r from-orange-400 via-amber-300 to-cyan-300 bg-clip-text text-transparent drop-shadow-md">
+              CHANGING THE MOVING WORLD.
             </span>
           </h1>
 
-          {/* Subtitle */}
-          <p className={`text-base sm:text-lg md:text-xl text-slate-300 mb-3 sm:mb-4 max-w-3xl mx-auto leading-relaxed transition-all duration-1000 delay-600 ${
-            isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
-          }`}>
+          {/* Description & Supporting Text */}
+          <p className={`mx-auto max-w-3xl text-base sm:text-lg md:text-xl font-normal leading-relaxed text-slate-200/95 drop-shadow-sm ${isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
+            }`}>
             {t('hero.description')}
           </p>
-          
-          <p className={`text-sm sm:text-base md:text-lg text-slate-400 mb-6 sm:mb-8 md:mb-12 max-w-2xl mx-auto transition-all duration-1000 delay-700 ${
-            isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
-          }`}>
+
+          <p className={`mx-auto mt-3 max-w-2xl text-xs sm:text-sm md:text-base font-light text-slate-300/80 leading-relaxed ${isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
+            }`}>
             {t('hero.details')}
           </p>
 
-          {/* Action Buttons */}
-          <div className={`flex flex-col sm:flex-row items-center justify-center space-y-3 sm:space-y-0 sm:space-x-4 lg:space-x-6 mb-8 sm:mb-12 transition-all duration-1000 delay-800 ${
-            isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-          }`}>
+          {/* CTA Action Buttons */}
+          <div className={`mt-8 flex flex-col items-center justify-center gap-3 sm:mt-10 sm:flex-row sm:gap-4 ${isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+            }`}>
             <button
               onClick={() => window.dispatchEvent(new CustomEvent('navigate', { detail: 'contact' }))}
-              className="group relative bg-gradient-to-r from-blue-600 to-cyan-500 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold transition-all duration-300 flex items-center space-x-2 shadow-xl hover:shadow-2xl hover:scale-105 w-full sm:w-auto justify-center text-sm sm:text-base overflow-hidden"
+              className="group relative w-full overflow-hidden rounded-xl bg-gradient-to-r from-orange-500 via-amber-500 to-orange-600 px-7 py-3.5 text-sm sm:text-base font-bold text-white shadow-xl shadow-orange-500/30 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-orange-500/40 sm:w-auto"
             >
-              <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <FileText size={20} className="relative z-10" />
-              <span className="relative z-10">{t('hero.getQuote')}</span>
-              <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform relative z-10" />
+              <div className="absolute inset-0 bg-gradient-to-r from-amber-500 to-orange-600 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+              <span className="relative z-10 flex items-center justify-center gap-2">
+                <FileText size={18} />
+                {t('hero.getQuote')}
+                <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
+              </span>
             </button>
-            
+
             <button
               onClick={() => window.dispatchEvent(new CustomEvent('navigate', { detail: 'products' }))}
-              className="group bg-white/10 backdrop-blur-md border-2 border-white/30 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold hover:bg-white/20 hover:border-white/50 transition-all duration-300 flex items-center space-x-2 shadow-xl hover:shadow-2xl hover:scale-105 w-full sm:w-auto justify-center text-sm sm:text-base"
+              className="group w-full rounded-xl border border-white/20 bg-slate-900/60 px-7 py-3.5 text-sm sm:text-base font-semibold text-white shadow-xl backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-orange-400/50 hover:bg-slate-900/90 sm:w-auto"
             >
-              <span>{t('hero.viewProducts')}</span>
-              <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+              <span className="flex items-center justify-center gap-2">
+                {t('hero.viewProducts')}
+                <ArrowRight size={18} className="transition-transform group-hover:translate-x-1 text-orange-400" />
+              </span>
             </button>
           </div>
 
-          {/* Stats - Animated Counters with Glassmorphism */}
-          <div className={`grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 md:gap-8 max-w-4xl mx-auto transition-all duration-1000 delay-1000 ${
-            isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-          }`}>
-            <div className="group text-center bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-4 hover:bg-white/10 hover:border-white/20 transition-all duration-300 hover:scale-105">
-              <div className="text-xl sm:text-2xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300 mb-1 sm:mb-2">
-                {containersCount}+
-              </div>
-              <div className="text-slate-300 text-xs md:text-sm">{t('hero.stat1')}</div>
+          {/* Key Stat Cards */}
+          <div className={`mx-auto mt-12 grid max-w-4xl grid-cols-2 gap-4 sm:mt-14 sm:grid-cols-4 sm:gap-6 ${isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+            }`}>
+            <div className="rounded-2xl border border-white/10 bg-slate-950/40 p-4 sm:p-5 backdrop-blur-md shadow-xl transition-all duration-300 hover:scale-[1.03] hover:border-orange-500/40 hover:bg-slate-950/60">
+              <div className="mb-1 text-2xl sm:text-3xl font-black font-['Outfit'] bg-gradient-to-br from-white via-slate-100 to-slate-300 bg-clip-text text-transparent">{containersCount}+</div>
+              <div className="text-xs text-slate-300 md:text-sm font-medium">{t('hero.stat1')}</div>
             </div>
-            <div className="group text-center bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-4 hover:bg-white/10 hover:border-white/20 transition-all duration-300 hover:scale-105">
-              <div className="text-xl sm:text-2xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300 mb-1 sm:mb-2">
-                {yearsCount}+
-              </div>
-              <div className="text-slate-300 text-xs md:text-sm">{t('hero.stat2')}</div>
+            <div className="rounded-2xl border border-white/10 bg-slate-950/40 p-4 sm:p-5 backdrop-blur-md shadow-xl transition-all duration-300 hover:scale-[1.03] hover:border-orange-500/40 hover:bg-slate-950/60">
+              <div className="mb-1 text-2xl sm:text-3xl font-black font-['Outfit'] bg-gradient-to-br from-white via-slate-100 to-slate-300 bg-clip-text text-transparent">{yearsCount}+</div>
+              <div className="text-xs text-slate-300 md:text-sm font-medium">{t('hero.stat2')}</div>
             </div>
-            <div className="group text-center bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-4 hover:bg-white/10 hover:border-white/20 transition-all duration-300 hover:scale-105">
-              <div className="text-xl sm:text-2xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300 mb-1 sm:mb-2">
-                {clientsCount}+
-              </div>
-              <div className="text-slate-300 text-xs md:text-sm">{t('hero.stat3')}</div>
+            <div className="rounded-2xl border border-white/10 bg-slate-950/40 p-4 sm:p-5 backdrop-blur-md shadow-xl transition-all duration-300 hover:scale-[1.03] hover:border-orange-500/40 hover:bg-slate-950/60">
+              <div className="mb-1 text-2xl sm:text-3xl font-black font-['Outfit'] bg-gradient-to-br from-white via-slate-100 to-slate-300 bg-clip-text text-transparent">{clientsCount}+</div>
+              <div className="text-xs text-slate-300 md:text-sm font-medium">{t('hero.stat3')}</div>
             </div>
-            <div className="group text-center bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-4 hover:bg-white/10 hover:border-white/20 transition-all duration-300 hover:scale-105">
-              <div className="text-xl sm:text-2xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300 mb-1 sm:mb-2">
-                {supportCount}/7
-              </div>
-              <div className="text-slate-300 text-xs md:text-sm">{t('hero.stat4')}</div>
+            <div className="rounded-2xl border border-white/10 bg-slate-950/40 p-4 sm:p-5 backdrop-blur-md shadow-xl transition-all duration-300 hover:scale-[1.03] hover:border-orange-500/40 hover:bg-slate-950/60">
+              <div className="mb-1 text-2xl sm:text-3xl font-black font-['Outfit'] bg-gradient-to-br from-white via-slate-100 to-slate-300 bg-clip-text text-transparent">{supportCount}/7</div>
+              <div className="text-xs text-slate-300 md:text-sm font-medium">{t('hero.stat4')}</div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Animated Scroll Indicator */}
-      <div className={`absolute bottom-4 sm:bottom-8 left-1/2 transform -translate-x-1/2 text-white animate-bounce transition-all duration-1000 delay-1200 ${
-        isHeroVisible ? 'opacity-100' : 'opacity-0'
-      }`}>
-        <div className="w-5 h-8 sm:w-6 sm:h-10 border-2 border-white/30 rounded-full flex justify-center">
-          <div className="w-1 h-3 bg-white rounded-full mt-2 animate-pulse"></div>
+      <div className={`absolute bottom-4 left-1/2 -translate-x-1/2 text-white transition-all duration-1000 delay-1200 sm:bottom-8 ${isHeroVisible ? 'opacity-100' : 'opacity-0'
+        }`}>
+        <div className="flex h-8 w-5 justify-center rounded-full border-2 border-white/30 sm:h-10 sm:w-6">
+          <div className="mt-2 h-3 w-1 rounded-full bg-white animate-pulse" />
         </div>
       </div>
     </section>

@@ -99,8 +99,8 @@ const ContactPage: React.FC = () => {
           >
             {/* Contact Information */}
             <div className="lg:col-span-1">
-              <div className="bg-white rounded-2xl p-8 shadow-lg h-fit">
-                <h2 className="text-2xl font-bold text-slate-900 mb-8">Contact Information</h2>
+              <div className="h-fit rounded-2xl bg-white p-4 shadow-lg sm:p-8">
+                <h2 className="mb-6 text-xl font-bold text-slate-900 sm:mb-8 sm:text-2xl">Contact Information</h2>
 
                 <div className="space-y-6">
                   {/* Address */}
@@ -141,7 +141,7 @@ const ContactPage: React.FC = () => {
                     <div>
                       <h4 className="font-semibold text-slate-900 mb-1">Email Us</h4>
                       <p className="text-slate-600">
-                        deepamengineeringworks.contact@gmail.co<br />
+                        deepamengineeringworks.contact@gmail.com<br />
                         deepamengineeringworks2018@gmail.com
                       </p>
                     </div>
@@ -212,8 +212,8 @@ const ContactPage: React.FC = () => {
 
             {/* Contact Form */}
             <div className="lg:col-span-2">
-              <div className="bg-white rounded-2xl p-8 shadow-lg">
-                <h2 className="text-2xl font-bold text-slate-900 mb-8">Send us a Message</h2>
+              <div className="rounded-2xl bg-white p-4 shadow-lg sm:p-8">
+                <h2 className="mb-6 text-xl font-bold text-slate-900 sm:mb-8 sm:text-2xl">Send us a Message</h2>
 
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-6">
@@ -343,7 +343,7 @@ const ContactPage: React.FC = () => {
               isMapVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
             }`}
           >
-            <div className="p-6 md:p-8 border-b border-slate-200 bg-gradient-to-r from-blue-50 to-slate-50">
+            <div className="border-b border-slate-200 bg-gradient-to-r from-blue-50 to-slate-50 p-4 sm:p-6 md:p-8">
               <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                 <div className="flex-1">
                   <div className="flex items-center gap-3 mb-3">
