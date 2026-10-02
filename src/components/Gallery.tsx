@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Lightbox from "yet-another-react-lightbox";
-import { ZoomIn, Eye, Sparkles } from 'lucide-react';
+import { ZoomIn, Sparkles, CheckCircle2 } from 'lucide-react';
 import "yet-another-react-lightbox/styles.css";
 
 // --- 2. Container Image Imports (Optimized WebP) ---
@@ -57,7 +57,7 @@ import curvedNew1 from '../assets/cabin photos/Curved Type Air Cutter Vehicle01.
 import curvedNew2 from '../assets/cabin photos/Curved Type Air Cutter Vehicle02.webp';
 import curvedNew3 from '../assets/cabin photos/Curved Type Air Cutter Vehicle03.webp';
 
-// --- 4. Workshop Placeholder Images (Optimized dimensions & WebP format) ---
+// --- 4. Workshop Placeholder Images ---
 const workshopImages = [
   "https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=900&auto=format&fit=crop",
   "https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=900&auto=format&fit=crop",
@@ -67,18 +67,89 @@ const workshopImages = [
   "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=900&auto=format&fit=crop",
 ];
 
-// --- 5. Gallery Data Structure ---
-const galleryData = [
+export interface GalleryPhotoItem {
+  src: string;
+  title: string;
+  span?: string;
+  isWide?: boolean;
+}
+
+export interface GallerySubcategory {
+  title: string;
+  gridCols: string;
+  items: GalleryPhotoItem[];
+}
+
+export interface GallerySection {
+  id: string;
+  title: string;
+  badge: string;
+  subcategories: GallerySubcategory[];
+}
+
+// --- 5. Gallery Data Structure with Photo-Adaptive Grids ---
+const galleryData: GallerySection[] = [
   {
     id: "containers",
     title: "Containers",
     badge: "26 Models",
     subcategories: [
-      { title: "10 Feet Container", images: [ten1, ten2, ten3] },
-      { title: "20 & 24 Feet Container", images: [twenty1, twenty2, twenty3, twenty4, twenty5, twenty6, twenty7] },
-      { title: "32 Feet Container", images: [thirtytwo1, thirtytwo2, thirtytwo3, thirtytwo4, thirtytwo5, thirtytwo6, thirtytwo7, thirtytwo8] },
-      { title: "Export RIG Support Container", images: [rig1, rig2, rig3, rig4, rig5] },
-      { title: "All Door Container", images: [alldorr1, alldoor2, alldoor3] },
+      {
+        title: "10 Feet Container",
+        gridCols: "grid grid-cols-1 md:grid-cols-3 gap-6",
+        items: [
+          { src: ten1, title: "10ft Commercial Container - 3/4 Perspective View", span: "col-span-1", isWide: false },
+          { src: ten2, title: "10ft Heavy Duty Storage - Full Side Elevation", span: "col-span-1", isWide: false },
+          { src: ten3, title: "10ft Compact Unit - Vertical Profile View", span: "col-span-1", isWide: false },
+        ],
+      },
+      {
+        title: "20 & 24 Feet Container",
+        gridCols: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6",
+        items: [
+          { src: twenty1, title: "20ft Standard Freight Container", span: "col-span-1", isWide: false },
+          { src: twenty2, title: "24ft Extended Long-Haul Container (Panoramic)", span: "col-span-1 md:col-span-2", isWide: true },
+          { src: twenty3, title: "20ft Cargo Heavy-Duty Side Loading", span: "col-span-1 md:col-span-2", isWide: true },
+          { src: twenty4, title: "Internal High-Strength Flooring Structure", span: "col-span-1", isWide: false },
+          { src: twenty5, title: "Reinforced Steel Corrugated Wall Panels", span: "col-span-1", isWide: false },
+          { src: twenty6, title: "24ft Commercial Carrier - Full Side Profile", span: "col-span-1 md:col-span-2", isWide: true },
+          { src: twenty7, title: "20ft Chassis-Mounted Logistics Container", span: "col-span-1 md:col-span-2", isWide: true },
+        ],
+      },
+      {
+        title: "32 Feet Container",
+        gridCols: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6",
+        items: [
+          { src: thirtytwo1, title: "32ft Ultra-Long Multi-Axle Hauler (Full Length)", span: "col-span-1 md:col-span-2 lg:col-span-3", isWide: true },
+          { src: thirtytwo2, title: "32ft High-Cube Volume Logistics Container", span: "col-span-1", isWide: false },
+          { src: thirtytwo3, title: "32ft Heavy Duty Steel Cargo Body", span: "col-span-1", isWide: false },
+          { src: thirtytwo4, title: "32ft Commercial Fleet Cargo Unit", span: "col-span-1", isWide: false },
+          { src: thirtytwo5, title: "32ft Dual Door Rear Locking Gear", span: "col-span-1", isWide: false },
+          { src: thirtytwo6, title: "32ft Integrated Chassis Mount Point", span: "col-span-1", isWide: false },
+          { src: thirtytwo7, title: "32ft Express Long-Route Cargo Container", span: "col-span-1", isWide: false },
+          { src: thirtytwo8, title: "32ft Heavy-Duty Corner Castings & Seal", span: "col-span-1", isWide: false },
+        ],
+      },
+      {
+        title: "Export RIG Support Container",
+        gridCols: "grid grid-cols-1 md:grid-cols-2 gap-6",
+        items: [
+          { src: rig1, title: "RIG Heavy Transport Unit - Full Side Elevation", span: "col-span-1 md:col-span-2", isWide: true },
+          { src: rig2, title: "Export RIG Industrial Heavy Chassis Support", span: "col-span-1", isWide: true },
+          { src: rig3, title: "Export RIG High-Strength Structural Platform", span: "col-span-1", isWide: true },
+          { src: rig4, title: "Heavy Machinery Transport Support Rig", span: "col-span-1", isWide: true },
+          { src: rig5, title: "Export RIG Turnkey Platform Ready for Road", span: "col-span-1 md:col-span-2", isWide: true },
+        ],
+      },
+      {
+        title: "All Door Container",
+        gridCols: "grid grid-cols-1 md:grid-cols-3 gap-6",
+        items: [
+          { src: alldorr1, title: "Full Side Multi-Door Configuration", span: "col-span-1", isWide: false },
+          { src: alldoor2, title: "End Door Double Seal Waterproof Lock", span: "col-span-1", isWide: false },
+          { src: alldoor3, title: "Complete Accessibility Side Loading Bay", span: "col-span-1", isWide: false },
+        ],
+      },
     ],
   },
   {
@@ -86,11 +157,50 @@ const galleryData = [
     title: "Lorry Cabins",
     badge: "14 Models",
     subcategories: [
-      { title: "Straight Type Cabin", images: [straightNew1, straightNew2, straightNew3] },
-      { title: "Aerodynamic Cabin", images: [aeroNew1, aeroNew2, aeroNew3] },
-      { title: "Cabin with Karur Grill", images: [karurNew1, karurNew2, karurNew3] },
-      { title: "Cabin with Centre Air Glass", images: [centreAirNew1, centreAirNew2] },
-      { title: "Curved Type Air Cutter Vehicle", images: [curvedNew1, curvedNew2, curvedNew3] },
+      {
+        title: "Straight Type Cabin",
+        gridCols: "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6",
+        items: [
+          { src: straightNew1, title: "Straight Cabin - High-Stance Front Elevation", span: "col-span-1", isWide: false },
+          { src: straightNew2, title: "Straight Cabin - Ergonomic Driver Stance", span: "col-span-1", isWide: false },
+          { src: straightNew3, title: "Straight Cabin - Heavy Steel Shell Angle", span: "col-span-1", isWide: false },
+        ],
+      },
+      {
+        title: "Aerodynamic Cabin",
+        gridCols: "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6",
+        items: [
+          { src: aeroNew1, title: "Aero Stance - Streamlined Roof Deflector", span: "col-span-1", isWide: false },
+          { src: aeroNew2, title: "Aero Stance - Wind-Tunnel Tested Contours", span: "col-span-1", isWide: false },
+          { src: aeroNew3, title: "Aero Stance - Heavy Haul Commercial Finish", span: "col-span-1", isWide: false },
+        ],
+      },
+      {
+        title: "Cabin with Karur Grill",
+        gridCols: "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6",
+        items: [
+          { src: karurNew1, title: "Karur Traditional Heavy Grill - Front Stance", span: "col-span-1", isWide: false },
+          { src: karurNew2, title: "Karur Chrome Accented Radiator Protection", span: "col-span-1", isWide: false },
+          { src: karurNew3, title: "Karur Commercial Bumper Integration", span: "col-span-1", isWide: false },
+        ],
+      },
+      {
+        title: "Cabin with Centre Air Glass",
+        gridCols: "grid grid-cols-1 sm:grid-cols-2 max-w-4xl mx-auto gap-6",
+        items: [
+          { src: centreAirNew1, title: "Centre Air Glass - Wide Panoramic View", span: "col-span-1", isWide: false },
+          { src: centreAirNew2, title: "Centre Air Glass - Dual Vent Airflow Geometry", span: "col-span-1", isWide: false },
+        ],
+      },
+      {
+        title: "Curved Type Air Cutter Vehicle",
+        gridCols: "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6",
+        items: [
+          { src: curvedNew1, title: "Curved Air Cutter - Aero Cowl Front Profile", span: "col-span-1", isWide: false },
+          { src: curvedNew2, title: "Curved Air Cutter - Dual Deflector Upper Body", span: "col-span-1", isWide: false },
+          { src: curvedNew3, title: "Curved Air Cutter - Highway Transport Ready", span: "col-span-1", isWide: false },
+        ],
+      },
     ],
   },
   {
@@ -98,48 +208,66 @@ const galleryData = [
     title: "Workshop",
     badge: "6 Photos",
     subcategories: [
-      { title: "Manufacturing & Fabrication", images: workshopImages },
+      {
+        title: "Manufacturing & Fabrication",
+        gridCols: "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6",
+        items: workshopImages.map((img, i) => ({
+          src: img,
+          title: `Precision Workshop Process 0${i + 1}`,
+          span: "col-span-1",
+          isWide: false,
+        })),
+      },
     ],
   },
 ];
 
-// --- 6. Optimized Image Card with Smooth Shimmer Skeleton ---
+// --- 6. Photo-Adaptive Card Component ---
 interface GalleryCardProps {
-  image: string;
+  item: GalleryPhotoItem;
   alt: string;
   onClick: () => void;
 }
 
-const GalleryCard: React.FC<GalleryCardProps> = ({ image, alt, onClick }) => {
+const GalleryCard: React.FC<GalleryCardProps> = ({ item, alt, onClick }) => {
   return (
     <div
       onClick={onClick}
-      className="relative cursor-pointer group break-inside-avoid touch-manipulation mb-6"
+      className={`${item.span || 'col-span-1'} group relative cursor-pointer rounded-2xl bg-white border border-slate-200/90 shadow-sm hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 overflow-hidden flex flex-col justify-between`}
     >
-      <div className="overflow-hidden rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 bg-slate-100 border border-slate-200/80 relative w-full group">
+      {/* Photo Container: completely uncropped, natural fit */}
+      <div className="relative w-full overflow-hidden bg-slate-50/80 flex items-center justify-center p-3 sm:p-4 min-h-[220px]">
         <img
-          src={image}
+          src={item.src}
           alt={alt}
+          loading="eager"
+          decoding="async"
           style={{ opacity: 1, display: 'block' }}
-          className="w-full h-auto object-contain group-hover:scale-105 transition-transform duration-500 ease-out"
+          className="w-full h-auto object-contain transition-transform duration-500 ease-out group-hover:scale-[1.02] drop-shadow-sm rounded-xl max-h-[550px]"
         />
 
         {/* Hover overlay with zoom button */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent flex flex-col justify-end p-5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-          <div className="transform translate-y-3 group-hover:translate-y-0 transition-transform duration-300 flex items-center justify-between">
-            <div className="bg-white/90 p-2.5 rounded-full shadow-lg">
-              <ZoomIn className="text-black" size={20} />
-            </div>
-            <span className="text-slate-900 text-xs font-bold tracking-wider uppercase bg-white/90 px-3 py-1 rounded-full">
-              View Fullscreen
-            </span>
-          </div>
+        <div className="absolute inset-0 bg-slate-950/25 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-4">
+          <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/95 backdrop-blur-md text-slate-900 font-bold text-xs sm:text-sm shadow-xl transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+            <ZoomIn size={16} className="text-blue-600" />
+            <span>Click to Enlarge</span>
+          </span>
         </div>
 
-        {/* Mobile tap badge */}
-        <div className="absolute top-3 right-3 bg-black/60 backdrop-blur-sm text-white text-[11px] font-medium px-2.5 py-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity sm:hidden">
-          Tap to view
+        {/* Top-Right Badge */}
+        <div className="absolute top-3 right-3 bg-slate-900/75 backdrop-blur-sm text-white text-[10px] font-bold px-2.5 py-1 rounded-full shadow-sm tracking-wider uppercase">
+          {item.isWide ? 'Wide Panoramic' : 'Full Photo'}
         </div>
+      </div>
+
+      {/* Card Footer with Title */}
+      <div className="px-4 py-3 bg-white border-t border-slate-100 flex items-center justify-between gap-3">
+        <p className="text-xs sm:text-sm font-bold text-slate-800 truncate group-hover:text-blue-600 transition-colors">
+          {item.title}
+        </p>
+        <span className="shrink-0 text-slate-400 group-hover:text-blue-600 transition-colors">
+          <ZoomIn size={15} />
+        </span>
       </div>
     </div>
   );
@@ -158,8 +286,8 @@ const Gallery: React.FC = () => {
     : galleryData.filter((section) => section.id === activeTab);
 
   // Open Lightbox handler
-  const openLightbox = (images: string[], index: number) => {
-    const slides = images.map((src) => ({ src }));
+  const openLightbox = (items: GalleryPhotoItem[], index: number) => {
+    const slides = items.map((item) => ({ src: item.src }));
     setCurrentSlides(slides);
     setCurrentIndex(index);
     setOpen(true);
@@ -167,7 +295,7 @@ const Gallery: React.FC = () => {
 
   // Total images count
   const totalCount = galleryData.reduce(
-    (acc, sec) => acc + sec.subcategories.reduce((subAcc, sub) => subAcc + sub.images.length, 0),
+    (acc, sec) => acc + sec.subcategories.reduce((subAcc, sub) => subAcc + sub.items.length, 0),
     0
   );
 
@@ -183,7 +311,7 @@ const Gallery: React.FC = () => {
             Product Gallery
           </h1>
           <p className="text-slate-600 text-base sm:text-lg">
-            Explore our precision-built steel containers, heavy commercial lorry cabins, and manufacturing facility in Tiruchengode.
+            Explore our precision-built steel containers, heavy commercial lorry cabins, and manufacturing facility in Tiruchengode. Every photo is displayed fully without cropping.
           </p>
         </div>
 
@@ -247,23 +375,23 @@ const Gallery: React.FC = () => {
                 </div>
 
                 {section.subcategories.map((subcategory, subIndex) => (
-                  <div key={subIndex} className="mb-12">
+                  <div key={subIndex} className="mb-14">
                     <h3 className="text-xl sm:text-2xl font-bold text-slate-800 mb-5 pl-1 flex items-center gap-2">
-                      <span className="w-1.5 h-4 bg-slate-400 rounded-full inline-block" />
+                      <span className="w-1.5 h-4 bg-orange-500 rounded-full inline-block" />
                       {subcategory.title}
-                      <span className="text-xs font-medium text-slate-600">
-                        ({subcategory.images.length} photos)
+                      <span className="text-xs font-semibold text-slate-500 bg-slate-100 px-2.5 py-0.5 rounded-full">
+                        {subcategory.items.length} photos
                       </span>
                     </h3>
 
-                    {/* GPU-accelerated Masonry Columns */}
-                    <div className="columns-1 sm:columns-2 lg:columns-3 gap-6">
-                      {subcategory.images.map((image, imageIndex) => (
+                    {/* Photo-Adaptive Dynamic Grid */}
+                    <div className={subcategory.gridCols}>
+                      {subcategory.items.map((item, itemIndex) => (
                         <GalleryCard
-                          key={`${image}-${imageIndex}`}
-                          image={image}
-                          alt={`${subcategory.title} - ${imageIndex + 1}`}
-                          onClick={() => openLightbox(subcategory.images, imageIndex)}
+                          key={`${item.src}-${itemIndex}`}
+                          item={item}
+                          alt={`${subcategory.title} - ${item.title}`}
+                          onClick={() => openLightbox(subcategory.items, itemIndex)}
                         />
                       ))}
                     </div>

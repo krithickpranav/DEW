@@ -880,16 +880,17 @@ const renderMainCategories = () => (
         }`}
         onClick={() => handleCategorySelect(category.id)}
       >
-        {/* Image and Overlay */}
-        <img
-          src={category.image}
-          alt={category.title}
-          className={`w-full h-[450px] md:h-[600px] ${
-            category.id === 'containers' ? 'object-contain' : 'object-cover'
-          } object-center group-hover:scale-105 transition-all duration-1000 ease-in-out p-4`}
-          loading="eager"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/30 to-transparent transition-all duration-500 group-hover:from-slate-900/95"></div>
+        {/* Image Container - Completely uncropped */}
+        <div className="w-full h-[400px] md:h-[540px] bg-slate-950 flex items-center justify-center p-6 sm:p-8">
+          <img
+            src={category.image}
+            alt={category.title}
+            style={{ opacity: 1, display: 'block' }}
+            className="w-full h-full object-contain group-hover:scale-105 transition-all duration-700 ease-out drop-shadow-2xl"
+            loading="eager"
+          />
+        </div>
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/40 to-transparent pointer-events-none transition-all duration-500 group-hover:from-slate-950"></div>
 
         {/* Content */}
         <div className="absolute inset-0 flex flex-col justify-end p-8 md:p-10">
@@ -938,16 +939,17 @@ const renderMainCategories = () => (
               visibleGridItems[index] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
             } ${model.isSpecial ? 'ring-2 ring-orange-400' : ''}`}
           >
-            <div className="relative aspect-video overflow-hidden bg-slate-100 p-4">
+            <div className="relative aspect-[16/10] overflow-hidden bg-slate-50 p-4 flex items-center justify-center">
               <img
                 src={model.image}
                 alt={model.title}
-                className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700"
+                style={{ opacity: 1, display: 'block' }}
+                className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent"></div>
- 
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 via-transparent to-transparent pointer-events-none"></div>
+
               {model.isSpecial && (
-                <div className="absolute top-4 right-4 bg-gradient-to-r from-orange-500 to-orange-600 text-white px-3 py-1 rounded-full text-xs font-bold">
+                <div className="absolute top-3 right-3 bg-gradient-to-r from-orange-500 to-orange-600 text-white px-3 py-1 rounded-full text-xs font-bold shadow-md">
                   Custom
                 </div>
               )}
@@ -994,13 +996,14 @@ const renderMainCategories = () => (
               visibleGridItems[index] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
             }`}
           >
-            <div className="relative aspect-video overflow-hidden bg-gray-50 p-4">
+            <div className="relative aspect-[4/3] sm:aspect-[1/1] overflow-hidden bg-slate-50 p-4 flex items-center justify-center">
               <img
                 src={model.image}
                 alt={model.title}
-                className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700"
+                style={{ opacity: 1, display: 'block' }}
+                className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 via-transparent to-transparent pointer-events-none"></div>
             </div>
 
             <div className="p-6">
@@ -1053,22 +1056,29 @@ const renderMainCategories = () => (
           <span className="text-orange-600 font-semibold">{specs.title}</span>
         </div>
 
-        {/* Hero Image Header */}
-        <div className="relative h-72 sm:h-96 lg:h-[80vh] w-full rounded-2xl overflow-hidden mb-8 shadow-2xl">
-          <img
-            src={specs.heroImage}
-            alt={specs.title}
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/50 to-transparent"></div>
+        {/* Hero Image Header - Fully uncropped with rich presentation */}
+        <div className="relative min-h-[340px] sm:min-h-[460px] lg:min-h-[520px] w-full rounded-3xl overflow-hidden mb-8 shadow-2xl bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 flex flex-col justify-between p-6 sm:p-10 border border-slate-800">
+          <div className="my-auto flex items-center justify-center py-6">
+            <img
+              src={specs.heroImage}
+              alt={specs.title}
+              style={{ opacity: 1, display: 'block' }}
+              className="max-h-[55vh] w-auto max-w-full object-contain mx-auto drop-shadow-[0_20px_45px_rgba(0,0,0,0.7)]"
+            />
+          </div>
 
-          <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-8 md:p-12">
-            <h1 className="mb-4 text-2xl font-bold text-white sm:text-3xl md:text-5xl">
-              {specs.title}
-            </h1>
-            <p className="text-xl md:text-2xl text-white/90 font-light">
-              {specs.tagline}
-            </p>
+          <div className="relative z-10 pt-5 border-t border-white/10 flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <h1 className="text-2xl font-bold text-white sm:text-3xl md:text-5xl tracking-tight drop-shadow-md">
+                {specs.title}
+              </h1>
+              <p className="text-base sm:text-xl text-slate-300 font-light mt-1">
+                {specs.tagline}
+              </p>
+            </div>
+            <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-orange-500/20 border border-orange-500/40 text-orange-300 text-xs font-bold uppercase tracking-wider">
+              Container Specifications
+            </span>
           </div>
         </div>
 
@@ -1230,21 +1240,24 @@ const renderMainCategories = () => (
                 <Eye className="text-slate-600" size={28} />
                 <span>Image Gallery</span>
               </h2>
-              <div className="grid md:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
                 {specs.gallery.map((image: any, index: number) => (
                   <div 
                     key={image.id} 
-                    className="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer"
+                    className="group relative overflow-hidden rounded-2xl border border-slate-200/90 bg-white shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer flex flex-col justify-between"
                     onClick={() => openLightbox(specs.gallery, index)}
                   >
-                    <img
-                      src={image.url}
-                      alt={image.title}
-                      className="w-full h-56 sm:h-64 object-contain bg-slate-100 p-2 object-center group-hover:scale-105 transition-transform duration-500"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    <div className="absolute bottom-4 left-4 bg-white/95 backdrop-blur-sm px-4 py-2 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <span className="text-sm font-semibold text-slate-900">{image.title}</span>
+                    <div className="p-4 bg-slate-50 flex items-center justify-center min-h-[220px]">
+                      <img
+                        src={image.url}
+                        alt={image.title}
+                        style={{ opacity: 1, display: 'block' }}
+                        className="w-full h-auto max-h-56 object-contain group-hover:scale-105 transition-transform duration-500 drop-shadow-sm"
+                      />
+                    </div>
+                    <div className="p-3.5 bg-white border-t border-slate-100 flex items-center justify-between">
+                      <span className="text-xs font-bold text-slate-800 truncate">{image.title}</span>
+                      <ZoomIn size={15} className="text-slate-400 group-hover:text-blue-600 transition-colors shrink-0" />
                     </div>
                   </div>
                 ))}
@@ -1291,22 +1304,29 @@ const renderMainCategories = () => (
           <span className="text-orange-600 font-semibold">{specs.title}</span>
         </div>
 
-        {/* Hero Image Header */}
-        <div className="relative h-72 sm:h-96 lg:h-[80vh] w-full rounded-2xl overflow-hidden mb-8 shadow-2xl">
-          <img
-            src={specs.heroImage}
-            alt={specs.title}
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/50 to-transparent"></div>
+        {/* Hero Image Header - Fully uncropped with rich presentation */}
+        <div className="relative min-h-[340px] sm:min-h-[460px] lg:min-h-[520px] w-full rounded-3xl overflow-hidden mb-8 shadow-2xl bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 flex flex-col justify-between p-6 sm:p-10 border border-slate-800">
+          <div className="my-auto flex items-center justify-center py-6">
+            <img
+              src={specs.heroImage}
+              alt={specs.title}
+              style={{ opacity: 1, display: 'block' }}
+              className="max-h-[55vh] w-auto max-w-full object-contain mx-auto drop-shadow-[0_20px_45px_rgba(0,0,0,0.7)]"
+            />
+          </div>
 
-          <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-8 md:p-12">
-            <h1 className="mb-4 text-2xl font-bold text-white sm:text-3xl md:text-5xl">
-              {specs.title}
-            </h1>
-            <p className="text-xl md:text-2xl text-white/90 font-light">
-              {specs.tagline}
-            </p>
+          <div className="relative z-10 pt-5 border-t border-white/10 flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <h1 className="text-2xl font-bold text-white sm:text-3xl md:text-5xl tracking-tight drop-shadow-md">
+                {specs.title}
+              </h1>
+              <p className="text-base sm:text-xl text-slate-300 font-light mt-1">
+                {specs.tagline}
+              </p>
+            </div>
+            <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-blue-500/20 border border-blue-500/40 text-blue-300 text-xs font-bold uppercase tracking-wider">
+              Cabin Specifications
+            </span>
           </div>
         </div>
 
@@ -1433,21 +1453,24 @@ const renderMainCategories = () => (
                 <Eye className="text-slate-600" size={28} />
                 <span>Image Gallery</span>
               </h2>
-              <div className="grid md:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
                 {specs.gallery.map((image: any, index: number) => (
                   <div 
                     key={image.id} 
-                    className="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer"
+                    className="group relative overflow-hidden rounded-2xl border border-slate-200/90 bg-white shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer flex flex-col justify-between"
                     onClick={() => openLightbox(specs.gallery, index)}
                   >
-                    <img
-                      src={image.url}
-                      alt={image.title}
-                      className="w-full h-56 sm:h-64 object-contain bg-slate-100 p-2 object-center group-hover:scale-105 transition-transform duration-500"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    <div className="absolute bottom-4 left-4 bg-white/95 backdrop-blur-sm px-4 py-2 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <span className="text-sm font-semibold text-slate-900">{image.title}</span>
+                    <div className="p-4 bg-slate-50 flex items-center justify-center min-h-[220px]">
+                      <img
+                        src={image.url}
+                        alt={image.title}
+                        style={{ opacity: 1, display: 'block' }}
+                        className="w-full h-auto max-h-56 object-contain group-hover:scale-105 transition-transform duration-500 drop-shadow-sm"
+                      />
+                    </div>
+                    <div className="p-3.5 bg-white border-t border-slate-100 flex items-center justify-between">
+                      <span className="text-xs font-bold text-slate-800 truncate">{image.title}</span>
+                      <ZoomIn size={15} className="text-slate-400 group-hover:text-blue-600 transition-colors shrink-0" />
                     </div>
                   </div>
                 ))}

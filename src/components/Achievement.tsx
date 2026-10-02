@@ -94,13 +94,13 @@ const Achievement: React.FC = () => {
                           key={idx}
                           className="group/cabin bg-white rounded-2xl border border-slate-200/70 shadow-sm hover:shadow-xl transition-all duration-400 overflow-hidden"
                         >
-                          {/* Image — no fixed height, shows at natural ratio */}
-                          <div className="bg-slate-100 rounded-t-2xl overflow-hidden">
+                          {/* Image — uncropped, full view with matching alignment */}
+                          <div className="bg-slate-100/80 rounded-t-2xl overflow-hidden flex items-center justify-center p-3 min-h-[260px]">
                             <img
                               src={cabin.src}
                               alt={cabin.title}
                               style={{ opacity: 1, display: 'block' }}
-                              className="w-full h-auto group-hover/cabin:scale-105 transition-transform duration-500 ease-out"
+                              className="w-full h-auto max-h-[290px] object-contain group-hover/cabin:scale-105 transition-transform duration-500 ease-out"
                             />
                           </div>
 
