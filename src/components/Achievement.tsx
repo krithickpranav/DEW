@@ -66,15 +66,18 @@ const Achievement: React.FC = () => {
 
   // --- 5. JSX Rendering ---
   return (
-    <section className="py-16 bg-slate-50">
+    <section className="py-20 bg-gradient-to-b from-white to-slate-50">
       <div className="container mx-auto px-4">
         <div className="max-w-7xl mx-auto">
           {/* Section Header */}
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
+          <div className="text-center mb-14">
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-orange-50 border border-orange-200 text-orange-600 text-xs font-bold uppercase tracking-widest mb-4">
+              Our Products
+            </span>
+            <h2 className="text-4xl md:text-5xl font-black text-slate-900 mb-4 tracking-tight">
               What We Build
             </h2>
-            <p className="text-lg md:text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed">
+            <p className="text-lg md:text-xl text-slate-500 max-w-3xl mx-auto leading-relaxed">
               A quick overview of our core products. Explore full specs and models on the Products page.
             </p>
           </div>
@@ -103,6 +106,7 @@ const Achievement: React.FC = () => {
                                 <img
                                   src={cabin.src}
                                   alt={cabin.title}
+                                  style={{ opacity: 1 }}
                                   className="w-full h-auto object-cover group-hover/cabin:scale-110 transition-transform duration-700 ease-in-out"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/20 to-transparent opacity-0 group-hover/cabin:opacity-100 transition-opacity duration-500" />
@@ -142,6 +146,7 @@ const Achievement: React.FC = () => {
                             <img
                               src={cat.image}
                               alt={cat.title}
+                              style={{ opacity: 1 }}
                               className="w-full h-auto object-cover group-hover/container:scale-105 transition-transform duration-700 ease-in-out"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-slate-900/20 to-transparent opacity-0 group-hover/container:opacity-100 transition-opacity duration-500" />
@@ -205,12 +210,13 @@ const Achievement: React.FC = () => {
           </div>
 
           {/* Bottom CTA */}
-          <div className="text-center mt-12">
+          <div className="text-center mt-14">
             <button
               onClick={() => window.dispatchEvent(new CustomEvent('navigate', { detail: 'products' }))}
-              className="bg-orange-500 text-white px-8 py-3 rounded-lg font-semibold hover:bg-orange-600 transition-colors shadow-lg hover:shadow-xl"
+              className="inline-flex items-center gap-2 bg-gradient-to-r from-orange-500 to-amber-500 text-white px-8 py-3.5 rounded-2xl font-bold text-base hover:from-orange-600 hover:to-amber-600 transition-all duration-300 shadow-lg shadow-orange-500/25 hover:shadow-xl hover:shadow-orange-500/35 hover:-translate-y-0.5"
             >
               View All Products
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"/></svg>
             </button>
           </div>
         </div>

@@ -40,83 +40,79 @@ const WhyChooseUs: React.FC = () => {
 
   // --- 4. JSX Rendering ---
   return (
-    <section 
+    <section
       ref={whyChooseRef}
-      className="py-16 bg-white"
+      className="py-20 bg-gradient-to-b from-slate-900 to-slate-950 relative overflow-hidden"
     >
-      <div className="container mx-auto px-4">
+      {/* Decorative background glow */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
+
+      <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-7xl mx-auto">
           {/* Section Header */}
-          <div className={`text-center mb-12 transition-all duration-1000 ${
+          <div className={`text-center mb-14 transition-all duration-1000 ${
             isWhyChooseVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}>
-            <span className="text-blue-600 font-semibold text-lg mb-2 block">Why Choose Us</span>
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 text-blue-300 text-xs font-bold uppercase tracking-widest mb-4">
+              Why Choose Us
+            </span>
+            <h2 className="text-4xl md:text-5xl font-black text-white mb-4 tracking-tight">
               Excellence in Every Detail
             </h2>
-            <p className="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
-              Our commitment to quality, innovation, and customer satisfaction sets us apart 
+            <p className="text-lg text-slate-400 max-w-2xl mx-auto leading-relaxed">
+              Our commitment to quality, innovation, and customer satisfaction sets us apart
               in the container manufacturing industry.
             </p>
           </div>
 
           {/* Features Grid */}
-          <div ref={featuresRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div ref={featuresRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
             {features.map((feature, index) => (
-              <div 
+              <div
                 key={index}
-                className={`group relative p-6 md:p-8 bg-white rounded-xl border border-slate-200 hover:border-transparent hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 ${
+                className={`group relative p-7 bg-white/5 border border-white/10 rounded-2xl hover:bg-white/10 hover:border-white/20 transition-all duration-500 hover:-translate-y-2 cursor-default ${
                   visibleFeatures[index] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
                 }`}
               >
-                {/* Gradient Background (appears on hover) */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${feature.color} opacity-0 group-hover:opacity-100 rounded-xl transition-all duration-500`}></div>
-                
-                {/* Content */}
-                <div className="relative z-10">
-                  {/* Icon */}
-                  <div className="w-16 h-16 bg-slate-100 rounded-xl flex items-center justify-center mb-6 group-hover:bg-white/20 transition-all duration-300">
-                    <feature.icon 
-                      className="text-slate-700 group-hover:text-white transition-colors duration-300" 
-                      size={32} 
-                    />
-                  </div>
-
-                  {/* Title */}
-                  <h3 className="text-lg md:text-xl font-bold text-slate-900 group-hover:text-white mb-4 transition-colors duration-300">
-                    {feature.title}
-                  </h3>
-
-                  {/* Description */}
-                  <p className="text-sm md:text-base text-slate-600 group-hover:text-white/90 leading-relaxed transition-colors duration-300">
-                    {feature.description}
-                  </p>
+                {/* Icon */}
+                <div className={`w-14 h-14 bg-gradient-to-br ${feature.color} rounded-2xl flex items-center justify-center mb-5 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                  <feature.icon className="text-white" size={28} />
                 </div>
 
-                {/* Decorative Element */}
-                <div className="absolute top-4 right-4 w-8 h-8 border-2 border-slate-200 group-hover:border-white/30 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
+                {/* Title */}
+                <h3 className="text-lg font-bold text-white mb-3 group-hover:text-blue-300 transition-colors duration-300">
+                  {feature.title}
+                </h3>
+
+                {/* Description */}
+                <p className="text-sm text-slate-400 leading-relaxed group-hover:text-slate-300 transition-colors duration-300">
+                  {feature.description}
+                </p>
+
+                {/* Decorative corner dot */}
+                <div className={`absolute top-5 right-5 w-2 h-2 rounded-full bg-gradient-to-br ${feature.color} opacity-60 group-hover:opacity-100 transition-opacity`} />
               </div>
             ))}
           </div>
 
           {/* Bottom CTA */}
-          <div className={`text-center mt-12 transition-all duration-1000 delay-800 ${
+          <div className={`text-center mt-14 transition-all duration-1000 delay-800 ${
             isWhyChooseVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
           }`}>
-            <div className="inline-flex items-center bg-slate-100 rounded-full px-8 py-4">
-              <div className="flex -space-x-2 mr-4">
+            <div className="inline-flex items-center bg-white/10 border border-white/15 rounded-2xl px-8 py-4 gap-4">
+              <div className="flex -space-x-2">
                 {[...Array(4)].map((_, i) => (
-                  <div 
+                  <div
                     key={i}
-                    className="w-10 h-10 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full border-2 border-white flex items-center justify-center text-white text-sm font-semibold"
+                    className="w-10 h-10 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full border-2 border-slate-900 flex items-center justify-center text-white text-sm font-bold shadow"
                   >
                     {String.fromCharCode(65 + i)}
                   </div>
                 ))}
               </div>
               <div className="text-left">
-                <div className="font-semibold text-slate-900">Join 100+ Satisfied Clients</div>
-                <div className="text-xs md:text-sm text-slate-600">Containers & Cabins - Experience the Deepam Engineering difference</div>
+                <div className="font-bold text-white text-sm">Join 100+ Satisfied Clients</div>
+                <div className="text-xs text-slate-400">Experience the Deepam Engineering difference</div>
               </div>
             </div>
           </div>

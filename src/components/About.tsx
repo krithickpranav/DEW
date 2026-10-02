@@ -103,6 +103,7 @@ const About: React.FC = () => {
                     <img
                       src={companyCardImage}
                       alt="Deepam Engineering Works Corporate Card"
+                      style={{ opacity: 1 }}
                       className="h-full w-full object-contain transition-transform duration-700 group-hover:scale-[1.02]"
                     />
                     
