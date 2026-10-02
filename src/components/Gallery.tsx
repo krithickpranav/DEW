@@ -116,11 +116,12 @@ const GalleryCard: React.FC<GalleryCardProps> = ({ image, alt, onClick }) => {
       onClick={onClick}
       className="relative cursor-pointer group break-inside-avoid touch-manipulation mb-6"
     >
-      <div className="overflow-hidden rounded-2xl shadow-md hover:shadow-2xl transition-all duration-300 bg-slate-100 border border-slate-200/80 relative w-full group aspect-[4/3]">
+      <div className="overflow-hidden rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 bg-slate-100 border border-slate-200/80 relative w-full group">
         <img
           src={image}
           alt={alt}
-          className="absolute inset-0 w-full h-full block object-cover group-hover:scale-105 transition-all duration-500 ease-out"
+          style={{ opacity: 1, display: 'block' }}
+          className="w-full h-auto object-contain group-hover:scale-105 transition-transform duration-500 ease-out"
         />
 
         {/* Hover overlay with zoom button */}

@@ -14,26 +14,22 @@ const cabinList = [
     title: 'Curved Type Air Cutter',
     tag: 'Reinforced Shell',
     specs: 'High-strength steel · Ergonomic interior',
-    aspectRatio: '1162 / 1353',
   },
   {
     src: cabinImage03,
     title: 'Aerodynamic Cabin',
     tag: 'Aero Efficiency',
     specs: 'Wind-tunnel optimized · Fuel saving design',
-    aspectRatio: '1280 / 1086',
   },
   {
     src: cabinImage02,
     title: 'Straight Type Commercial',
     tag: 'Heavy Duty',
     specs: 'Full-width sleeper · Durable chassis mount',
-    aspectRatio: '1110 / 1417',
   },
 ];
 
 const Achievement: React.FC = () => {
-  // --- 4. Data Definitions ---
   const categories = [
     {
       id: 'containers',
@@ -64,7 +60,6 @@ const Achievement: React.FC = () => {
     },
   ];
 
-  // --- 5. JSX Rendering ---
   return (
     <section className="py-20 bg-gradient-to-b from-white to-slate-50">
       <div className="container mx-auto px-4">
@@ -83,91 +78,72 @@ const Achievement: React.FC = () => {
           </div>
 
           {/* Overview Cards */}
-          <div className="grid grid-cols-1 gap-8">
-            {categories.map((cat, index) => (
+          <div className="grid grid-cols-1 gap-10">
+            {categories.map((cat) => (
               <div
                 key={cat.id}
-                className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 border border-slate-100"
+                className="group bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-slate-100"
               >
                 {/* Image Showcase Section */}
-                <div className="bg-slate-50/50 p-4 sm:p-6">
+                <div className="p-4 sm:p-6 bg-slate-50/60">
                   {cat.id === 'lorry-cabins' ? (
-                    <div className="w-full">
-                      <div className="columns-1 md:columns-3 gap-5 space-y-5 w-full items-start">
-                        {cat.cabins?.map((cabin, idx) => (
-                          <div
-                            key={idx}
-                            className="group/cabin break-inside-avoid flex flex-col bg-white rounded-2xl border border-slate-200/60 shadow-sm hover:shadow-2xl hover:-translate-y-1 transition-all duration-500 overflow-hidden"
-                          >
-                            <div className="p-2 sm:p-3 bg-slate-50 flex items-center justify-center relative overflow-hidden">
-                              <div
-                                className="relative w-full overflow-hidden rounded-xl bg-slate-100 flex items-center justify-center"
-                              >
-                                <img
-                                  src={cabin.src}
-                                  alt={cabin.title}
-                                  style={{ opacity: 1 }}
-                                  className="w-full h-auto object-cover group-hover/cabin:scale-110 transition-transform duration-700 ease-in-out"
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/20 to-transparent opacity-0 group-hover/cabin:opacity-100 transition-opacity duration-500" />
-                              </div>
-                            </div>
-
-                            <div className="p-4 flex-1 flex flex-col justify-between border-t border-slate-100 bg-white">
-                              <div>
-                                <div className="flex items-center justify-between mb-2">
-                                  <span className="inline-flex items-center gap-1.5 text-[10px] font-bold text-blue-600 bg-blue-50 px-2.5 py-1 rounded-md border border-blue-100 uppercase tracking-wider">
-                                    <CheckCircle2 size={12} className="text-blue-500" />
-                                    {cabin.tag}
-                                  </span>
-                                  <span className="text-[10px] text-slate-400 font-bold tracking-widest uppercase">
-                                    Mod 0{idx + 1}
-                                  </span>
-                                </div>
-                                <h4 className="text-base font-bold text-slate-900 group-hover/cabin:text-blue-600 transition-colors duration-300">
-                                  {cabin.title}
-                                </h4>
-                                <p className="text-xs text-slate-500 mt-1.5 leading-relaxed">
-                                  {cabin.specs}
-                                </p>
-                              </div>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  ) : (
-                    <div className="w-full">
-                      <div className="bg-white rounded-3xl border border-slate-200/60 shadow-sm hover:shadow-2xl hover:-translate-y-1 transition-all duration-500 overflow-hidden group/container">
-                        <div className="p-3 bg-slate-50 flex items-center justify-center relative overflow-hidden">
-                          <div 
-                            className="relative w-full overflow-hidden rounded-2xl bg-slate-100 flex items-center justify-center"
-                          >
+                    /* --- Cabin: 3-column grid, each image shows fully --- */
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                      {cat.cabins?.map((cabin, idx) => (
+                        <div
+                          key={idx}
+                          className="group/cabin bg-white rounded-2xl border border-slate-200/70 shadow-sm hover:shadow-xl transition-all duration-400 overflow-hidden"
+                        >
+                          {/* Image — no fixed height, shows at natural ratio */}
+                          <div className="bg-slate-100 rounded-t-2xl overflow-hidden">
                             <img
-                              src={cat.image}
-                              alt={cat.title}
-                              style={{ opacity: 1 }}
-                              className="w-full h-auto object-cover group-hover/container:scale-105 transition-transform duration-700 ease-in-out"
+                              src={cabin.src}
+                              alt={cabin.title}
+                              style={{ opacity: 1, display: 'block' }}
+                              className="w-full h-auto group-hover/cabin:scale-105 transition-transform duration-500 ease-out"
                             />
-                            <div className="absolute inset-0 bg-gradient-to-t from-slate-900/20 to-transparent opacity-0 group-hover/container:opacity-100 transition-opacity duration-500" />
+                          </div>
+
+                          {/* Caption */}
+                          <div className="p-4 border-t border-slate-100">
+                            <div className="flex items-center justify-between mb-1.5">
+                              <span className="inline-flex items-center gap-1.5 text-[10px] font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded-md border border-blue-100 uppercase tracking-wider">
+                                <CheckCircle2 size={10} className="text-blue-500" />
+                                {cabin.tag}
+                              </span>
+                              <span className="text-[10px] text-slate-400 font-bold tracking-widest uppercase">
+                                Mod 0{idx + 1}
+                              </span>
+                            </div>
+                            <h4 className="text-sm font-bold text-slate-900 group-hover/cabin:text-blue-600 transition-colors duration-200">
+                              {cabin.title}
+                            </h4>
+                            <p className="text-xs text-slate-500 mt-1 leading-relaxed">{cabin.specs}</p>
                           </div>
                         </div>
-
-                        <div className="px-6 py-4 bg-white border-t border-slate-100 flex flex-wrap items-center justify-between gap-4 text-xs">
-                          <div className="flex items-center gap-2.5">
-                            <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse ring-4 ring-emerald-500/20"></span>
-                            <span className="font-bold text-slate-800 text-sm">
-                              Heavy-Duty Commercial Cargo Container
-                            </span>
-                            <span className="text-slate-300 hidden sm:inline">|</span>
-                            <span className="text-slate-500 hidden sm:inline font-medium">
-                              Engineered for high volume payload and long-haul transport
-                            </span>
-                          </div>
-                          <div className="flex items-center gap-2 text-blue-600 font-bold bg-blue-50 px-3 py-1.5 rounded-lg border border-blue-100">
-                            <Package size={14} />
-                            <span>10ft · 20/24ft · 32ft Available</span>
-                          </div>
+                      ))}
+                    </div>
+                  ) : (
+                    /* --- Container: single image, full natural width --- */
+                    <div className="bg-white rounded-2xl border border-slate-200/60 shadow-sm overflow-hidden group/container">
+                      <img
+                        src={cat.image}
+                        alt={cat.title}
+                        style={{ opacity: 1, display: 'block' }}
+                        className="w-full h-auto group-hover/container:scale-[1.02] transition-transform duration-500 ease-out"
+                      />
+                      <div className="px-5 py-3.5 border-t border-slate-100 flex flex-wrap items-center justify-between gap-3 text-xs">
+                        <div className="flex items-center gap-2">
+                          <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse ring-2 ring-emerald-500/20" />
+                          <span className="font-bold text-slate-800 text-sm">Heavy-Duty Commercial Cargo Container</span>
+                          <span className="text-slate-300 hidden sm:inline">|</span>
+                          <span className="text-slate-500 hidden sm:inline font-medium">
+                            Engineered for high volume payload and long-haul transport
+                          </span>
+                        </div>
+                        <div className="flex items-center gap-2 text-blue-600 font-bold bg-blue-50 px-3 py-1.5 rounded-lg border border-blue-100">
+                          <Package size={13} />
+                          <span>10ft · 20/24ft · 32ft Available</span>
                         </div>
                       </div>
                     </div>
@@ -181,9 +157,7 @@ const Achievement: React.FC = () => {
                       <div className="w-10 h-10 rounded-xl bg-orange-100 text-orange-600 flex items-center justify-center shrink-0">
                         <cat.icon size={22} />
                       </div>
-                      <h3 className="text-2xl font-bold text-slate-900 group-hover:text-orange-500 transition-colors">
-                        {cat.title}
-                      </h3>
+                      <h3 className="text-2xl font-bold text-slate-900">{cat.title}</h3>
                     </div>
                     <span className="text-xs font-semibold px-3 py-1 bg-orange-50 text-orange-600 rounded-full w-fit border border-orange-200/50">
                       Certified Build Standards
@@ -195,7 +169,7 @@ const Achievement: React.FC = () => {
                     {cat.items.map((it, i) => (
                       <li
                         key={i}
-                        className="flex items-center space-x-3 p-3 rounded-xl bg-slate-50 border border-slate-100 hover:bg-orange-50/60 hover:border-orange-200/70 transition-colors"
+                        className="flex items-center space-x-3 p-3 rounded-xl bg-slate-50 border border-slate-100 hover:bg-orange-50/60 hover:border-orange-200/70 transition-colors duration-200"
                       >
                         <div className="w-8 h-8 rounded-lg bg-orange-100 text-orange-500 flex items-center justify-center shrink-0">
                           <it.icon size={16} />
