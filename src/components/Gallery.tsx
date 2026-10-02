@@ -111,44 +111,25 @@ interface GalleryCardProps {
 }
 
 const GalleryCard: React.FC<GalleryCardProps> = ({ image, alt, onClick }) => {
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [hasError, setHasError] = useState(false);
-
   return (
     <div
       onClick={onClick}
-      className="relative cursor-pointer group break-inside-avoid touch-manipulation transform-gpu mb-6 will-change-transform"
+      className="relative cursor-pointer group break-inside-avoid touch-manipulation mb-6"
     >
-      <div className="overflow-hidden rounded-2xl shadow-md hover:shadow-2xl transition-all duration-300 bg-slate-100 border border-slate-200/80 relative w-full group">
-        {/* Shimmer skeleton while image loads */}
-        {!isLoaded && !hasError && (
-          <div className="w-full aspect-[4/3] bg-gradient-to-r from-slate-200 via-slate-100 to-slate-200 animate-pulse flex items-center justify-center">
-            <Eye className="w-6 h-6 text-slate-300" />
-          </div>
-        )}
-
+      <div className="overflow-hidden rounded-2xl shadow-md hover:shadow-2xl transition-all duration-300 bg-slate-100 border border-slate-200/80 relative w-full group aspect-[4/3]">
         <img
-          src={hasError ? 'https://via.placeholder.com/400x300?text=Image+Not+Found' : image}
+          src={image}
           alt={alt}
-          loading="lazy"
-          decoding="async"
-          onLoad={() => setIsLoaded(true)}
-          onError={() => {
-            setHasError(true);
-            setIsLoaded(true);
-          }}
-          className={`w-full h-auto object-cover group-hover:scale-105 transition-all duration-500 ease-out ${
-            isLoaded ? 'opacity-100' : 'opacity-0 absolute inset-0'
-          }`}
+          className="absolute inset-0 w-full h-full block object-cover group-hover:scale-105 transition-all duration-500 ease-out"
         />
 
         {/* Hover overlay with zoom button */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent flex flex-col justify-end p-5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
           <div className="transform translate-y-3 group-hover:translate-y-0 transition-transform duration-300 flex items-center justify-between">
-            <div className="bg-white/20 backdrop-blur-md p-2.5 rounded-full border border-white/30 shadow-lg">
-              <ZoomIn className="text-white" size={20} />
+            <div className="bg-white/90 p-2.5 rounded-full shadow-lg">
+              <ZoomIn className="text-black" size={20} />
             </div>
-            <span className="text-white text-xs font-semibold tracking-wider uppercase bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full border border-white/20">
+            <span className="text-slate-900 text-xs font-bold tracking-wider uppercase bg-white/90 px-3 py-1 rounded-full">
               View Fullscreen
             </span>
           </div>

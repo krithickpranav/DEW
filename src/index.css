@@ -308,14 +308,6 @@ img {
   opacity: 1;
 }
 
-img[loading="lazy"] {
-  opacity: 0;
-}
-
-img[loading="lazy"].loaded {
-  opacity: 1;
-}
-
 /* Responsive utilities */
 .container-responsive {
   width: 100%;
