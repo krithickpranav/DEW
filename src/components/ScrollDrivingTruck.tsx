@@ -97,7 +97,7 @@ const ScrollDrivingTruck: React.FC = () => {
           100% { background-position: -40px 0; }
         }
       `}</style>
-      <div className="fixed bottom-0 left-0 w-full h-[60px] z-[100] pointer-events-none" aria-hidden="true">
+      <div className="fixed bottom-16 lg:bottom-0 left-0 w-full h-[60px] z-[99] pointer-events-none" aria-hidden="true">
         {/* Road line */}
         <div 
            className="absolute bottom-2 w-full h-[2px] bg-slate-400/30"

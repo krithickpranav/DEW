@@ -196,11 +196,11 @@ const ContactPage: React.FC = () => {
                 <div className="space-y-4">
                   <div className="flex items-center space-x-3">
                     <Award className="text-blue-200" size={20} />
-                    <span className="text-blue-100">15+ Years Experience</span>
+                    <span className="text-blue-100">8+ Years Experience</span>
                   </div>
                   <div className="flex items-center space-x-3">
                     <Building className="text-blue-200" size={20} />
-                    <span className="text-blue-100">500+ Containers Built</span>
+                    <span className="text-blue-100">2000+ Containers Built</span>
                   </div>
                   <div className="flex items-center space-x-3">
                     <Users className="text-blue-200" size={20} />

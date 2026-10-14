@@ -104,7 +104,7 @@ const TruckAnimation: React.FC = () => {
 
       {/* ── Fixed banner at bottom ── */}
       <div
-        className="fixed bottom-0 left-0 right-0 z-30 pointer-events-none select-none"
+        className="fixed bottom-16 lg:bottom-0 left-0 right-0 z-30 pointer-events-none select-none"
         aria-hidden="true"
       >
         {/* Road strip */}

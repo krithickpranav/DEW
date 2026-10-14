@@ -46,8 +46,8 @@ const Hero: React.FC<HeroProps> = () => {
   const contentRef = useRef<HTMLDivElement>(null);
 
   // Animated counters
-  const containersCount = useCountUp(500, 2000, isHeroVisible);
-  const yearsCount = useCountUp(15, 2000, isHeroVisible);
+  const containersCount = useCountUp(2000, 2000, isHeroVisible);
+  const yearsCount = useCountUp(8, 2000, isHeroVisible);
   const clientsCount = useCountUp(100, 2000, isHeroVisible);
   const supportCount = useCountUp(24, 1500, isHeroVisible);
 

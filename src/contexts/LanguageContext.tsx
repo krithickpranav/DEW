@@ -49,12 +49,12 @@ const translations: Record<Language, Record<string, string>> = {
     'about.qualityAssurance': 'Quality Assurance',
     'about.qualityDesc': 'Rigorous quality control processes ensure every container meets the highest standards of durability and performance.',
     'about.expertise': 'Expertise',
-    'about.expertiseDesc': 'Over 15 years of experience in container manufacturing with a team of skilled craftsmen and engineers.',
+    'about.expertiseDesc': 'Over 8 years of experience in container manufacturing with a team of skilled craftsmen and engineers.',
     'about.innovation': 'Innovation',
     'about.innovationDesc': 'Continuous R&D to improve designs, materials, and manufacturing processes for better products.',
     'about.storyPara1': 'Established in 2018, Deepam Engineering Works has grown from a small workshop to one of India\'s most trusted container body manufacturers. Our journey began with a simple mission: to provide superior quality container solutions that exceed customer expectations.',
     'about.storyPara2': 'Today, we operate from our state-of-the-art facility, equipped with modern machinery and staffed by skilled professionals who bring decades of combined experience to every project.',
-    'about.yearsCount': '5+',
+    'about.yearsCount': '8+',
     
     // Footer
     'footer.contactInfo': 'Contact Information',

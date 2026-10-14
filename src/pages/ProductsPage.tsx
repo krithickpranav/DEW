@@ -1,6 +1,6 @@
 // --- 1. Imports ---
 import React, { useState, useEffect } from 'react';
-import { ArrowLeft, Download, MessageCircle, Phone, Package, Truck, Eye, Shield, Box, Layers, DoorOpen, X, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ArrowLeft, MessageCircle, Phone, Package, Truck, Eye, Shield, Box, Layers, DoorOpen, X, ChevronLeft, ChevronRight, ZoomIn, ArrowRight, Star, CheckCircle } from 'lucide-react';
 import { useScrollAnimation, useStaggeredAnimation } from '../hooks/useScrollAnimation';
 
 // --- 2. Asset Imports ---
@@ -61,7 +61,12 @@ import cabinCustom4 from '../assets/cabin photos/Aerodynamic Cabin01.webp';
 // --- 3. Type Definitions ---
 type View = 'main' | 'container-models' | 'lorry-models' | 'container-specs' | 'lorry-specs';
 
-const ProductsPage: React.FC = () => {
+interface ProductsPageProps {
+  deepLink?: string | null;
+  onDeepLinkConsumed?: () => void;
+}
+
+const ProductsPage: React.FC<ProductsPageProps> = ({ deepLink, onDeepLinkConsumed }) => {
   // --- 4. State and Hooks ---
   const [currentView, setCurrentView] = useState<View>('main');
   const [selectedModel, setSelectedModel] = useState<string>('');
@@ -69,6 +74,24 @@ const ProductsPage: React.FC = () => {
   const [lightboxImage, setLightboxImage] = useState<{ gallery: any[], index: number } | null>(null);
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [gridRef, visibleGridItems] = useStaggeredAnimation(12, 100);
+
+  // --- Deep Link Handler ---
+  useEffect(() => {
+    if (!deepLink) return;
+
+    // Format: "containers:10ft" or "lorry-cabins:aerodynamic"
+    const [category, modelId] = deepLink.split(':');
+    if (category && modelId) {
+      if (category === 'containers') {
+        setCurrentView('container-specs');
+        setSelectedModel(modelId);
+      } else if (category === 'lorry-cabins') {
+        setCurrentView('lorry-specs');
+        setSelectedModel(modelId);
+      }
+    }
+    onDeepLinkConsumed?.();
+  }, [deepLink, onDeepLinkConsumed]);
 
   // --- 5. Constants ---
   // WhatsApp number
@@ -813,10 +836,6 @@ const ProductsPage: React.FC = () => {
         <div className="bg-white rounded-2xl shadow-xl p-6">
           <h3 className="text-lg font-bold text-slate-900 mb-4">Request a Quote</h3>
           <div className="space-y-3">
-            <button className="w-full bg-slate-100 text-slate-700 py-3 px-4 rounded-lg font-semibold hover:bg-slate-200 transition-all duration-300 flex items-center justify-center space-x-2">
-              <Download size={18} />
-              <span>Download Brochure</span>
-            </button>
             <a
               href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`}
               target="_blank"
@@ -849,12 +868,8 @@ const ProductsPage: React.FC = () => {
       : `Hi, I want to enquire about ${modelName}`;
 
     return (
-      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 shadow-2xl p-4 z-50 lg:hidden">
+      <div className="fixed bottom-16 left-0 right-0 bg-white border-t border-slate-200 shadow-2xl p-4 z-40 lg:hidden">
         <div className="flex space-x-2">
-          <button className="flex-1 bg-slate-100 text-slate-700 py-3 px-4 rounded-lg font-semibold hover:bg-slate-200 transition-all flex items-center justify-center space-x-2">
-            <Download size={16} />
-            <span className="text-sm">Brochure</span>
-          </button>
           <a
             href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`}
             target="_blank"
@@ -871,46 +886,87 @@ const ProductsPage: React.FC = () => {
 
   // --- 10. Render Functions ---
 const renderMainCategories = () => (
-  <div ref={gridRef} className="grid md:grid-cols-2 gap-8 lg:gap-12 max-w-6xl mx-auto">
+  <div ref={gridRef} className="grid md:grid-cols-2 gap-8 lg:gap-10 max-w-6xl mx-auto">
     {mainCategories.map((category, index) => (
       <div
         key={category.id}
-        className={`group relative rounded-2xl overflow-hidden shadow-2xl transition-all duration-700 ease-in-out cursor-pointer ${
-          visibleGridItems[index] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+        className={`group relative cursor-pointer transition-all duration-700 ease-out ${
+          visibleGridItems[index] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-16'
         }`}
         onClick={() => handleCategorySelect(category.id)}
+        style={{ transitionDelay: `${index * 150}ms` }}
       >
-        {/* Image Container - Completely uncropped */}
-        <div className="w-full h-[400px] md:h-[540px] bg-slate-950 flex items-center justify-center p-6 sm:p-8">
-          <img
-            src={category.image}
-            alt={category.title}
-            style={{ opacity: 1, display: 'block' }}
-            className="w-full h-full object-contain group-hover:scale-105 transition-all duration-700 ease-out drop-shadow-2xl"
-            loading="eager"
-          />
-        </div>
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/40 to-transparent pointer-events-none transition-all duration-500 group-hover:from-slate-950"></div>
+        {/* Animated gradient border wrapper */}
+        <div className="relative rounded-3xl p-[2px] bg-gradient-to-br from-orange-400/60 via-slate-700/40 to-blue-500/60 group-hover:from-orange-500 group-hover:via-blue-400 group-hover:to-orange-500 transition-all duration-700 shadow-2xl group-hover:shadow-orange-500/20">
+          {/* Card body */}
+          <div className="relative rounded-3xl overflow-hidden bg-gradient-to-b from-slate-900 via-slate-900 to-slate-950">
 
-        {/* Content */}
-        <div className="absolute inset-0 flex flex-col justify-end p-8 md:p-10">
-          <div className="transform transition-transform duration-500 group-hover:-translate-y-4">
-            <div className="w-16 h-16 bg-white/10 backdrop-blur-lg rounded-xl flex items-center justify-center mb-6 border border-white/20">
-              <category.icon className="text-white" size={32} />
+            {/* Top badge */}
+            <div className="absolute top-4 left-4 z-20 flex items-center gap-2">
+              <div className="flex items-center gap-1.5 bg-black/40 backdrop-blur-md border border-white/10 rounded-full px-3 py-1.5">
+                <category.icon className="text-orange-400" size={14} />
+                <span className="text-white/90 text-xs font-semibold tracking-wide uppercase">{category.id === 'containers' ? 'Containers' : 'Lorry Cabins'}</span>
+              </div>
             </div>
-            <h3 className="text-3xl md:text-4xl font-bold text-white mb-3 drop-shadow-lg">
-              {category.title}
-            </h3>
-            <p className="text-white/90 text-lg leading-relaxed drop-shadow-md max-w-md">
-              {category.description}
-            </p>
-          </div>
 
-          {/* Explore Button (appears on hover) */}
-          <div className="mt-8 opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform group-hover:-translate-y-2">
-            <div className="inline-flex items-center space-x-3 bg-white/90 backdrop-blur-md text-slate-900 px-8 py-4 rounded-lg font-bold shadow-lg">
-              <span>Explore Products</span>
-              <Eye size={20} />
+            {/* Quality badge */}
+            <div className="absolute top-4 right-4 z-20">
+              <div className="flex items-center gap-1 bg-orange-500/90 backdrop-blur-sm rounded-full px-2.5 py-1">
+                <Star size={10} className="text-white fill-white" />
+                <span className="text-white text-xs font-bold">Premium</span>
+              </div>
+            </div>
+
+            {/* Image area */}
+            <div className="relative h-[320px] md:h-[420px] flex items-center justify-center px-8 pt-14 pb-6 overflow-hidden">
+              {/* Ambient glow behind image */}
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-slate-900/80 z-10 pointer-events-none" />
+              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-3/4 h-32 bg-orange-500/10 blur-3xl rounded-full pointer-events-none" />
+
+              <img
+                src={category.image}
+                alt={category.title}
+                style={{ opacity: 1, display: 'block' }}
+                className="relative z-0 w-full h-full object-contain group-hover:scale-110 group-hover:brightness-110 transition-all duration-700 ease-out drop-shadow-[0_20px_50px_rgba(0,0,0,0.8)]"
+                loading="eager"
+              />
+            </div>
+
+            {/* Bottom content panel */}
+            <div className="relative z-10 px-7 pb-7 pt-5 border-t border-white/5 bg-gradient-to-b from-slate-900/50 to-slate-950">
+              {/* Title row */}
+              <div className="flex items-start justify-between gap-4 mb-3">
+                <h3 className="text-2xl md:text-3xl font-bold text-white leading-tight group-hover:text-orange-300 transition-colors duration-300">
+                  {category.title}
+                </h3>
+                <div className="shrink-0 w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-orange-500 group-hover:border-orange-400 transition-all duration-400">
+                  <ArrowRight size={18} className="text-white/60 group-hover:text-white group-hover:translate-x-0.5 transition-all duration-300" />
+                </div>
+              </div>
+
+              <p className="text-slate-400 text-sm leading-relaxed mb-5">
+                {category.description}
+              </p>
+
+              {/* Feature chips */}
+              <div className="flex flex-wrap gap-2 mb-5">
+                {(category.id === 'containers'
+                  ? ['10 ft – 45 ft', 'Custom Build', 'Export Grade', 'All-Door']
+                  : ['Aerodynamic', 'Karur Grill', 'Air Cutter', 'Custom']
+                ).map((tag) => (
+                  <span key={tag} className="inline-flex items-center gap-1 bg-white/5 border border-white/10 rounded-full px-3 py-1 text-xs text-slate-300 font-medium">
+                    <CheckCircle size={10} className="text-orange-400" />
+                    {tag}
+                  </span>
+                ))}
+              </div>
+
+              {/* CTA button */}
+              <div className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-orange-500 to-orange-600 group-hover:from-orange-400 group-hover:to-orange-500 text-white font-bold py-3.5 rounded-xl shadow-lg shadow-orange-500/20 group-hover:shadow-orange-400/40 transition-all duration-400">
+                <Eye size={16} />
+                <span>Explore Products</span>
+                <ArrowRight size={15} className="group-hover:translate-x-1 transition-transform duration-300" />
+              </div>
             </div>
           </div>
         </div>

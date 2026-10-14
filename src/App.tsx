@@ -22,13 +22,15 @@ function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [currentPage, setCurrentPage] = useState('home');
+  const [productDeepLink, setProductDeepLink] = useState<string | null>(null);
   const [fabRef, isFabVisible] = useScrollAnimation();
 
   // --- 3. Effects ---
   useEffect(() => {
     const handleNavigate = (e: CustomEvent) => {
-      const page = e.detail.split('#')[0];
+      const [page, fragment] = e.detail.split('#');
       setCurrentPage(page);
+      setProductDeepLink(fragment || null);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
@@ -54,7 +56,7 @@ function App() {
   const renderPage = () => {
     switch (currentPage) {
       case 'products':
-        return <ProductsPage />;
+        return <ProductsPage deepLink={productDeepLink} onDeepLinkConsumed={() => setProductDeepLink(null)} />;
       case 'gallery':
         return <Gallery />;
       case 'contact':
@@ -85,7 +87,7 @@ function App() {
         setCurrentPage={setCurrentPage}
       />
       
-      <main className="overflow-hidden pb-12">
+      <main className="overflow-hidden pb-28 lg:pb-12">
         {renderPage()}
       </main>
 
@@ -94,7 +96,7 @@ function App() {
       {/* Floating Action Buttons - Right Side */}
       <div 
         ref={fabRef}
-        className={`fixed bottom-3 right-3 sm:bottom-6 sm:right-6 z-40 flex flex-col space-y-3 transition-all duration-1000 ${
+        className={`fixed bottom-20 right-3 sm:bottom-6 sm:right-6 z-40 flex flex-col space-y-3 transition-all duration-1000 ${
           isFabVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'
         }`}
       >
@@ -128,7 +130,7 @@ function App() {
 
       {/* Sticky Get Quote Button - Left Side */}
       <div 
-        className={`fixed bottom-3 left-3 sm:bottom-6 sm:left-6 z-40 transition-all duration-1000 ${
+        className={`fixed bottom-20 left-3 sm:bottom-6 sm:left-6 z-40 transition-all duration-1000 ${
           isFabVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'
         }`}
       >

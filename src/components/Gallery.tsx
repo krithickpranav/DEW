@@ -1,8 +1,7 @@
 // --- 1. Imports ---
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import Lightbox from "yet-another-react-lightbox";
-import { ZoomIn, Maximize2, Sparkles, Layers, Truck, ShieldCheck, Box, SlidersHorizontal, ArrowUpRight } from 'lucide-react';
+import { ZoomIn, Maximize2, Sparkles, Layers, Truck, ShieldCheck, Box, ArrowUpRight } from 'lucide-react';
 import "yet-another-react-lightbox/styles.css";
 
 // --- 2. Container Image Imports (Optimized WebP) ---
@@ -57,15 +56,13 @@ import curvedNew1 from '../assets/cabin photos/Curved Type Air Cutter Vehicle01.
 import curvedNew2 from '../assets/cabin photos/Curved Type Air Cutter Vehicle02.webp';
 import curvedNew3 from '../assets/cabin photos/Curved Type Air Cutter Vehicle03.webp';
 
-// --- 4. Workshop Placeholder Images ---
-const workshopImages = [
-  "https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=900&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=900&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=900&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=900&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1503389152951-9f343605f61e?q=80&w=900&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=900&auto=format&fit=crop",
-];
+import workshop1 from '../assets/workshop/WhatsApp Image 2026-10-02 at 13.20.38 (1).jpeg';
+import workshop2 from '../assets/workshop/WhatsApp Image 2026-10-02 at 13.20.38.jpeg';
+import workshop3 from '../assets/workshop/WhatsApp Image 2026-10-02 at 13.20.39 (1).jpeg';
+import workshop4 from '../assets/workshop/WhatsApp Image 2026-10-02 at 13.20.39.jpeg';
+import workshop5 from '../assets/workshop/WhatsApp Image 2026-10-02 at 13.38.55.jpeg';
+
+const workshopImages = [workshop1, workshop2, workshop3, workshop4, workshop5];
 
 export interface GalleryPhotoItem {
   src: string;
@@ -343,15 +340,9 @@ const HiFiGalleryCard: React.FC<HiFiGalleryCardProps> = ({ item, alt, onClick })
 
 // --- 7. Main Hi-Fi Gallery Component ---
 const Gallery: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<'all' | 'containers' | 'cabins' | 'workshop'>('all');
   const [open, setOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [currentSlides, setCurrentSlides] = useState<{ src: string }[]>([]);
-
-  // Filter sections based on selected tab
-  const filteredData = activeTab === 'all'
-    ? galleryData
-    : galleryData.filter((section) => section.id === activeTab);
 
   // Open Lightbox handler
   const openLightbox = (items: GalleryPhotoItem[], index: number) => {
@@ -387,10 +378,10 @@ const Gallery: React.FC = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 relative z-10">
         
         {/* Header Section */}
-        <div className="text-center max-w-4xl mx-auto mb-12">
+        <div className="text-center max-w-4xl mx-auto mb-16">
           <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/30 text-cyan-400 text-xs font-mono font-bold tracking-widest uppercase mb-5 shadow-[0_0_20px_rgba(56,189,248,0.2)]">
             <Sparkles size={14} className="text-cyan-400" />
-            <span>DEW Industrial Showcase · Tiruchengode</span>
+            <span>DEW Complete Master Showcase · {totalCount} Full Scale Builds</span>
           </div>
 
           <h1 className="text-4xl sm:text-6xl md:text-7xl font-black tracking-tight text-transparent bg-clip-text bg-gradient-to-b from-white via-slate-100 to-slate-400 mb-6 font-['Outfit']">
@@ -398,7 +389,7 @@ const Gallery: React.FC = () => {
           </h1>
 
           <p className="text-slate-400 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
-            Every build shown at 100% full scale. Explore our heavy-duty cargo containers, commercial lorry cabins, and precision manufacturing bays.
+            All container models, commercial lorry cabins, and manufacturing facilities are showcased freely below at 100% full scale with zero cropping.
           </p>
 
           {/* Quick Stat Badges */}
@@ -415,62 +406,10 @@ const Gallery: React.FC = () => {
           </div>
         </div>
 
-        {/* Hi-Fi Floating Pill Tab Switcher */}
-        <div className="flex justify-center mb-16">
-          <div className="inline-flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 p-1.5 rounded-full bg-slate-900/90 border border-white/10 shadow-[0_12px_40px_rgba(0,0,0,0.6)] backdrop-blur-2xl">
-            <button
-              onClick={() => setActiveTab('all')}
-              className={`px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold tracking-wide transition-all duration-300 flex items-center gap-2 ${
-                activeTab === 'all'
-                  ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-[0_0_25px_rgba(37,99,235,0.5)] scale-105'
-                  : 'text-slate-400 hover:text-white hover:bg-white/5'
-              }`}
-            >
-              All Projects
-              <span className={`text-[10px] font-mono px-2 py-0.5 rounded-full ${
-                activeTab === 'all' ? 'bg-white/20 text-white' : 'bg-slate-800 text-slate-400'
-              }`}>
-                {totalCount}
-              </span>
-            </button>
-
-            {galleryData.map((tab) => {
-              const TabIcon = tab.icon;
-              const subCount = tab.subcategories.reduce((acc, sub) => acc + sub.items.length, 0);
-              return (
-                <button
-                  key={tab.id}
-                  onClick={() => setActiveTab(tab.id as 'containers' | 'cabins' | 'workshop')}
-                  className={`px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold tracking-wide transition-all duration-300 flex items-center gap-2 ${
-                    activeTab === tab.id
-                      ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-[0_0_25px_rgba(37,99,235,0.5)] scale-105'
-                      : 'text-slate-400 hover:text-white hover:bg-white/5'
-                  }`}
-                >
-                  <TabIcon size={14} className={activeTab === tab.id ? 'text-white' : 'text-slate-400'} />
-                  {tab.title}
-                  <span className={`text-[10px] font-mono px-2 py-0.5 rounded-full ${
-                    activeTab === tab.id ? 'bg-white/20 text-white' : 'bg-slate-800 text-slate-400'
-                  }`}>
-                    {subCount}
-                  </span>
-                </button>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* Gallery Sections */}
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={activeTab}
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -15 }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
-          >
-            {filteredData.map((section, sectionIndex) => (
-              <section key={section.id || sectionIndex} className="mb-20">
+        {/* Gallery Sections - All freely visible in continuous flow */}
+        <div>
+          {galleryData.map((section, sectionIndex) => (
+            <section key={section.id || sectionIndex} className="mb-24">
                 
                 {/* Major Section Banner */}
                 <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-4 mb-10 border-b border-white/10">
@@ -526,8 +465,7 @@ const Gallery: React.FC = () => {
                 ))}
               </section>
             ))}
-          </motion.div>
-        </AnimatePresence>
+        </div>
       </div>
 
       {/* Lightbox for High-Resolution Fullscreen View */}
